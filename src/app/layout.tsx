@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { Geist, Geist_Mono } from 'next/font/google'
+import { Noto_Sans_JP } from 'next/font/google'
 import './globals.css'
 import {
   ClerkProvider,
@@ -10,14 +10,10 @@ import {
   UserButton,
 } from '@clerk/nextjs'
 
-const geistSans = Geist({
-  variable: '--font-geist-sans',
+const notoSansJP = Noto_Sans_JP({
+  variable: '--font-noto-sans-jp',
   subsets: ['latin'],
-})
-
-const geistMono = Geist_Mono({
-  variable: '--font-geist-mono',
-  subsets: ['latin'],
+  display: 'swap',
 })
 
 export const metadata: Metadata = {
@@ -33,9 +29,7 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body
-          className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-        >
+        <body className={`${notoSansJP.variable} antialiased`}>
           <header className="flex justify-end items-center p-4 gap-4 h-16">
             <SignedOut>
               <SignInButton />
