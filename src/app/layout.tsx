@@ -1,26 +1,5 @@
 import type { Metadata } from 'next'
-import { Noto_Sans_JP } from 'next/font/google'
 import '@/styles/globals.css'
-import {
-  ClerkProvider,
-  SignedIn,
-  SignedOut,
-  SignInButton,
-  SignUpButton,
-  UserButton,
-} from '@clerk/nextjs'
-import AppSidebar from '@/components/layout/header'
-import {
-  SidebarInset,
-  SidebarProvider,
-  SidebarTrigger,
-} from '@/components/ui/sidebar'
-
-const notoSansJP = Noto_Sans_JP({
-  variable: '--font-noto-sans-jp',
-  subsets: ['latin'],
-  display: 'swap',
-})
 
 export const metadata: Metadata = {
   title: 'Create Next App',
@@ -32,37 +11,5 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode
 }>) {
-  return (
-    <ClerkProvider>
-      <html lang="en">
-        <body className={`${notoSansJP.variable} antialiased`}>
-          <SidebarProvider>
-            <AppSidebar />
-
-            <SidebarInset>
-              <header className="flex h-16 shrink-0 items-center gap-2 px-4">
-                <SidebarTrigger />
-                <SignedOut>
-                  <SignInButton />
-                  <SignUpButton>
-                    <button
-                      type="button"
-                      className="bg-[#6c47ff] text-ceramic-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer"
-                    >
-                      Sign Up
-                    </button>
-                  </SignUpButton>
-                </SignedOut>
-                <SignedIn>
-                  <UserButton />
-                </SignedIn>
-              </header>
-
-              <main>{children}</main>
-            </SidebarInset>
-          </SidebarProvider>
-        </body>
-      </html>
-    </ClerkProvider>
-  )
+  return children
 }

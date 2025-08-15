@@ -1,8 +1,6 @@
-export default function Home() {
-  return (
-    <>
-      <h1>Welcome to My App</h1>
-      <p>This is a simple Next.js application.</p>
-    </>
-  )
+import { redirect } from 'next/navigation'
+
+// This page only renders when the app is built statically (output: 'export')
+export default function RootPage() {
+  redirect('/en')
 }
