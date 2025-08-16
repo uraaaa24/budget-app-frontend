@@ -1,7 +1,6 @@
-import { Home, PiggyBank, Settings } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import {
   SidebarContent,
   SidebarGroup,
@@ -11,48 +10,24 @@ import {
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
 import type { Locale } from '@/constants/locale'
-import {
-  HOME_PAGE,
-  localizePath,
-  SETTINGS_PAGE,
-  TRANSACTIONS_PAGE,
-} from '@/constants/page'
+import { localizePath, MENU_ITEMS } from '@/constants/page'
 import { cn } from '@/lib/utils'
-
-// Menu items.
-const items = [
-  {
-    title: 'Dashboard',
-    url: HOME_PAGE,
-    icon: Home,
-  },
-  {
-    title: 'Transactions',
-    url: TRANSACTIONS_PAGE,
-    icon: PiggyBank,
-  },
-  {
-    title: 'Settings',
-    url: SETTINGS_PAGE,
-    icon: Settings,
-  },
-] as const
 
 const AppSidebarContent = () => {
   const pathname = usePathname()
   const locale = useLocale() as Locale
+  const t = useTranslations('Navigation')
 
   return (
     <SidebarContent className="bg-white">
       <SidebarGroup>
-        {/* <SidebarGroupLabel>Menu</SidebarGroupLabel> */}
         <SidebarGroupContent>
           <SidebarMenu>
-            {items.map((item) => {
+            {MENU_ITEMS.map((item) => {
               const isActive = pathname === localizePath(locale, item.url)
 
               return (
-                <SidebarMenuItem key={item.title} className="mb-2">
+                <SidebarMenuItem key={item.titleKey} className="mb-2">
                   <SidebarMenuButton
                     asChild
                     isActive={isActive}
@@ -66,7 +41,7 @@ const AppSidebarContent = () => {
                   >
                     <Link href={item.url} className="flex items-center gap-2">
                       <item.icon className="h-5 w-5 shrink-0" />
-                      <span>{item.title}</span>
+                      <span>{t(item.titleKey)}</span>
                     </Link>
                   </SidebarMenuButton>
                 </SidebarMenuItem>

@@ -2,5 +2,10 @@
   "HomePage": {
     "title": "こんにちは、世界！",
     "description": "これはシンプルなNext.jsアプリケーションです。"
+  },
+  "Navigation": {
+    "dashboard": "ダッシュボード",
+    "transactions": "取引履歴",
+    "settings": "設定"
   }
 }

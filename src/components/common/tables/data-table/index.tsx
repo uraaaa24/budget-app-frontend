@@ -10,7 +10,7 @@ import {
 } from '@tanstack/react-table'
 import { useMemo, useState } from 'react'
 import { Checkbox } from '@/components/ui/checkbox'
-import { Table, TableFooter } from '@/components/ui/table'
+import { Table } from '@/components/ui/table'
 import DataTableBody from './table-body'
 import DataTableHeader from './table-header'
 

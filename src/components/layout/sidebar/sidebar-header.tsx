@@ -16,7 +16,7 @@ const AppSidebarHeader = () => {
             asChild
             className="hover:bg-transparent active:bg-transparent"
           >
-            <Link href="/" className="flex items-center gap-2">
+            <Link href="/" className="flex items-center gap-4">
               <Leaf className="!size-6 text-green-600" />
               <span className="text-xl font-semibold">Budget App</span>
             </Link>

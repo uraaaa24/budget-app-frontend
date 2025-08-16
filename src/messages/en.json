@@ -2,5 +2,10 @@
   "HomePage": {
     "title": "Hello world!",
     "description": "This is a simple Next.js application."
+  },
+  "Navigation": {
+    "dashboard": "Dashboard",
+    "transactions": "Transactions",
+    "settings": "Settings"
   }
 }

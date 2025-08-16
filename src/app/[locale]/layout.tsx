@@ -8,9 +8,9 @@ import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { routing } from '@/i18n/routing'
 
 const notoSansJP = Noto_Sans_JP({
-  variable: '--font-noto-sans-jp',
   subsets: ['latin'],
   display: 'swap',
+  variable: '--font-noto-sans-jp',
 })
 
 export default async function LocaleLayout({
@@ -32,7 +32,7 @@ export default async function LocaleLayout({
               <AppSidebar />
               <SidebarInset>
                 <Header />
-                <main className="flex-1 overflow-y-auto px-10">{children}</main>
+                <main className="flex-1 overflow-y-auto px-16">{children}</main>
               </SidebarInset>
             </SidebarProvider>
           </NextIntlClientProvider>
