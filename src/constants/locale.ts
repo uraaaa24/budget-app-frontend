@@ -1,7 +1,8 @@
 /**
  * Supported locales for the application
  */
-export const locales = ['en', 'ja'] as const
+export const locales = ['en'] as const
+// export const locales = ['en', 'ja'] as const
 
 /**
  * Type representing the supported locales.
