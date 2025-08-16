@@ -8,6 +8,7 @@ const columns: ColumnDef<TransactionTableRow>[] = [
   {
     accessorKey: 'occurredAt',
     header: 'Date',
+    enableSorting: true,
   },
   // The type is displayed with a symbol in the Amount field, so this field is hidden.
   // TODO: Once implementation is complete, delete this comment.
@@ -18,14 +19,17 @@ const columns: ColumnDef<TransactionTableRow>[] = [
   {
     accessorKey: 'amount',
     header: 'Amount',
+    enableSorting: true,
   },
   {
     accessorKey: 'category',
     header: 'Category',
+    enableSorting: true,
   },
   {
     accessorKey: 'account',
     header: 'Account',
+    enableSorting: true,
   },
   {
     accessorKey: 'description',
