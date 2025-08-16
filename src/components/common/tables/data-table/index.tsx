@@ -76,7 +76,7 @@ const DataTable = <TData, TValue>({
   })
 
   return (
-    <div className="overflow-hidden rounded-md border">
+    <div className="overflow-hidden rounded-lg border">
       <Table>
         {/* Header */}
         <DataTableHeader headerGroups={table.getHeaderGroups()} />
@@ -85,7 +85,7 @@ const DataTable = <TData, TValue>({
         <DataTableBody rows={table.getRowModel().rows} columns={columns} />
 
         {/* Footer */}
-        <TableFooter />
+        {/* <TableFooter /> */}
       </Table>
     </div>
   )
