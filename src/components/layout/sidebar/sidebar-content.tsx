@@ -1,12 +1,6 @@
-import {
-  Calendar,
-  Home,
-  Inbox,
-  PiggyBank,
-  Search,
-  Settings,
-} from 'lucide-react'
+import { Home, PiggyBank, Settings } from 'lucide-react'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import {
   SidebarContent,
   SidebarGroup,
@@ -38,6 +32,8 @@ const items = [
 ]
 
 const AppSidebarContent = () => {
+  const pathname = usePathname()
+
   return (
     <SidebarContent className="bg-white">
       <SidebarGroup>
@@ -46,7 +42,10 @@ const AppSidebarContent = () => {
           <SidebarMenu>
             {items.map((item) => (
               <SidebarMenuItem key={item.title}>
-                <SidebarMenuButton asChild>
+                <SidebarMenuButton
+                  asChild
+                  isActive={pathname.endsWith(item.url)}
+                >
                   <Link href={item.url} className="flex items-center gap-2">
                     <item.icon />
                     <span>{item.title}</span>
