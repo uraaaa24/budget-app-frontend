@@ -1,5 +1,5 @@
 import type { ColumnDef } from '@tanstack/react-table'
-import DataTable from '@/components/common/tables/data-table'
+import DataTable from '@/components/parts/tables/data-table'
 import type { Transaction } from '../transaction-type'
 
 type TransactionTableRow = Omit<Transaction, 'id'>
