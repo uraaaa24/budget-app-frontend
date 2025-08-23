@@ -1,3 +1,4 @@
+import TransactionForm from '@/features/transactions/components/transaction-form'
 import TransactionTable from '@/features/transactions/components/transaction-table'
 import type { Transaction } from '@/features/transactions/transaction-type'
 import { authApiClient } from '@/lib/api-client'
@@ -19,9 +20,12 @@ const TransactionsPage = async () => {
   console.log('Transactions:', data)
 
   return (
-    <div>
+    <>
+      <div className="flex items-center justify-end">
+        <TransactionForm />
+      </div>
       <TransactionTable />
-    </div>
+    </>
   )
 }
 

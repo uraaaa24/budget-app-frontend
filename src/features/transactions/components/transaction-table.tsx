@@ -117,7 +117,7 @@ const getData = (): TransactionTableRow[] => {
 const TransactionTable = () => {
   const data = getData()
   return (
-    <div className="container mx-auto py-10">
+    <div className="container mx-auto py-6">
       <DataTable columns={columns} data={data} />
     </div>
   )

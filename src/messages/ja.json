@@ -7,5 +7,24 @@
     "dashboard": "ダッシュボード",
     "transactions": "取引履歴",
     "settings": "設定"
+  },
+  "TransactionsPage": {
+    "title": "Transactions",
+    "addTransaction": "Add new",
+    "editTransaction": "Edit Transaction",
+    "deleteTransaction": "Delete Transaction",
+    "TransactionForm": {
+      "title": "Transaction Form",
+      "description": "Fill in the details of the transaction.",
+      "Fields": {
+        "date": "Date",
+        "account": "Account",
+        "category": "Category",
+        "amount": "Amount",
+        "Note": "Note"
+      },
+      "submit": "Submit",
+      "cancel": "Cancel"
+    }
   }
 }
