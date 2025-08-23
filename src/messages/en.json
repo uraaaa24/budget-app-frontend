@@ -14,7 +14,7 @@
     "editTransaction": "Edit Transaction",
     "deleteTransaction": "Delete Transaction",
     "TransactionForm": {
-      "title": "Transaction Form",
+      "title": "Add Transaction",
       "description": "Fill in the details of the transaction.",
       "Fields": {
         "date": "Date",
