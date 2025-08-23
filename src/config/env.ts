@@ -12,7 +12,7 @@ const createEnv = () => {
 
   const envVars = {
     API_URL: process.env.NEXT_PUBLIC_API_URL,
-    CLERK_JWT_KEY: process.env.CLERK_JWT_KEY,
+    CLERK_JWT_TEMPLATE_NAME: process.env.NEXT_PUBLIC_CLERK_JWT_TEMPLATE_NAME,
     CLERK_PUBLISHABLE_KEY: process.env.NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY,
   }
 
