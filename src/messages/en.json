@@ -18,6 +18,8 @@
       "description": "Fill in the details of the transaction.",
       "Fields": {
         "date": "Date",
+        "selectDate": "Select date",
+        "description": "Description",
         "account": "Account",
         "category": "Category",
         "amount": "Amount",

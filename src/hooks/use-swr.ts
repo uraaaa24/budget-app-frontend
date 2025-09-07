@@ -2,7 +2,9 @@
 
 import { useAuth } from '@clerk/nextjs'
 import { useCallback } from 'react'
+import useSWRMutation from 'swr/mutation'
 import { env } from '@/config/env'
+import type { CrudMethod } from '@/constants/api'
 
 /**
  * Generic fetcher function for SWR
@@ -42,4 +44,24 @@ export const useFetcher = () => {
   )
 
   return { fetcher, authFetcher }
+}
+
+/**
+ * Custom hook for performing mutations (POST, PUT, DELETE) with SWR
+ */
+export const useMutation = <TRequest, TResponse>(
+  url: string,
+  method: Exclude<CrudMethod, 'GET'>,
+) => {
+  const { authFetcher } = useFetcher()
+
+  return useSWRMutation(
+    url,
+    async (url: string, { arg }: { arg: TRequest }) => {
+      return authFetcher<TResponse>(url, {
+        method,
+        body: JSON.stringify(arg),
+      })
+    },
+  )
 }

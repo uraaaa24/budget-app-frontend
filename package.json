@@ -6,6 +6,7 @@
 		"dev": "next dev --turbopack",
 		"build": "next build",
 		"start": "next start",
+		"watch": "tsc --noEmit --watch",
 		"lint": "next lint && biome lint --write --unsafe",
 		"lint:fix": "next lint --fix && biome lint --write --unsafe",
 		"prepare": "husky"

@@ -16,7 +16,7 @@ export type Transaction = {
   type: TransactionType
   amount: number
   occurredAt: string
-  category: string
-  account: string
+  // category: string
+  // account: string
   description: string
 }

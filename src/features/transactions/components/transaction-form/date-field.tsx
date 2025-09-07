@@ -12,19 +12,18 @@ import {
 } from '@/components/ui/popover'
 import { cn } from '@/lib/utils'
 import {
-  type TransactionFormValues,
+  type TransactionFormInferType,
   transactionFormFieldNames,
-} from './transaction-form'
+} from '../../schemas/transaction-form'
 
-const FormDateField = () => {
+const TransactionDateField = () => {
   const t = useTranslations('TransactionsPage.TransactionForm.Fields')
-
-  const { control } = useFormContext<TransactionFormValues>()
+  const { control } = useFormContext<TransactionFormInferType>()
 
   return (
     <FormFieldItem
       control={control}
-      name={transactionFormFieldNames.date}
+      name={transactionFormFieldNames.occurredAt}
       label={t('date')}
       renderControl={(field) => (
         <Popover>
@@ -48,7 +47,7 @@ const FormDateField = () => {
             <Calendar
               mode="single"
               selected={field.value}
-              onSelect={field.onChange}
+              onSelect={(date) => date && field.onChange(date)}
               disabled={(date) =>
                 date > new Date() || date < new Date('1900-01-01')
               }
@@ -60,4 +59,4 @@ const FormDateField = () => {
   )
 }
 
-export default FormDateField
+export default TransactionDateField
