@@ -17,11 +17,15 @@ import DataTableHeader from './table-header'
 type DataTableProps<TData, TValue> = {
   columns: ColumnDef<TData, TValue>[]
   data: TData[]
+  isLoading?: boolean
+  error?: Error
 }
 
 const DataTable = <TData, TValue>({
   columns,
   data,
+  isLoading = false,
+  error = undefined,
 }: DataTableProps<TData, TValue>) => {
   const [sorting, setSorting] = useState<SortingState>([])
   const [rowSelection, setRowSelection] = useState<RowSelectionState>({})
@@ -82,7 +86,12 @@ const DataTable = <TData, TValue>({
         <DataTableHeader headerGroups={table.getHeaderGroups()} />
 
         {/* Body */}
-        <DataTableBody rows={table.getRowModel().rows} columns={columns} />
+        <DataTableBody
+          rows={table.getRowModel().rows}
+          columns={columns}
+          isLoading={isLoading}
+          error={error}
+        />
 
         {/* Footer */}
         {/* <TableFooter /> */}

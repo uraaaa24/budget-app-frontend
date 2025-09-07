@@ -55,7 +55,12 @@ const TransactionTable = () => {
 
   return (
     <div className="container mx-auto py-6">
-      <DataTable columns={columns} data={tableData} />
+      <DataTable
+        columns={columns}
+        data={tableData}
+        isLoading={isLoading}
+        error={error}
+      />
     </div>
   )
 }
