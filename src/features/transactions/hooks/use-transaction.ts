@@ -14,12 +14,12 @@ import type {
 export const useGetTransactions = () => {
   const { authFetcher } = useFetcher()
 
-  const { data, error, isLoading } = useSWR<GetTransactionsResponse>(
+  const { data, error, isLoading, mutate } = useSWR<GetTransactionsResponse>(
     'http://localhost:8000/transactions',
     authFetcher,
   )
 
-  return { data, isLoading, error }
+  return { data, isLoading, error, mutate }
 }
 
 export const useCreateTransaction = () => {
@@ -49,6 +49,29 @@ export const useCreateTransaction = () => {
 
   return {
     createTransaction,
+    data,
+    error,
+    isLoading,
+  }
+}
+
+export const useDeleteTransaction = (id: string) => {
+  const {
+    trigger,
+    data,
+    error,
+    isMutating: isLoading,
+  } = useMutation<null, { message: string }>(
+    `http://localhost:8000/transactions/${id}`,
+    CRUD_METHODS.DELETE,
+  )
+
+  const deleteTransaction = useCallback(() => {
+    return trigger(null)
+  }, [trigger])
+
+  return {
+    deleteTransaction,
     data,
     error,
     isLoading,

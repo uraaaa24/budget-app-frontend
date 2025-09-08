@@ -4,8 +4,9 @@ import type { ColumnDef } from '@tanstack/react-table'
 import DataTable from '@/components/parts/tables/data-table'
 import { useGetTransactions } from '../../hooks/use-transaction'
 import type { Transaction } from '../../types/transaction'
+import TransactionActionCell from './action-cell'
 
-type TransactionTableRow = Omit<Transaction, 'id'>
+export type TransactionTableRow = Transaction
 
 const columns: ColumnDef<TransactionTableRow>[] = [
   {
@@ -38,20 +39,28 @@ const columns: ColumnDef<TransactionTableRow>[] = [
     accessorKey: 'description',
     header: 'Description',
   },
+  {
+    id: 'actions',
+    enableHiding: false,
+    cell: ({ row }) => {
+      const transaction = row.original
+
+      return <TransactionActionCell transaction={transaction} />
+    },
+  },
 ]
 
 const TransactionTable = () => {
   const { data, isLoading, error } = useGetTransactions()
 
   const tableData: TransactionTableRow[] =
-    data?.transactions.map((t) => {
-      return {
-        type: t.type,
-        amount: t.amount,
-        occurredAt: new Date(t.occurred_at).toISOString().split('T')[0],
-        description: t.description || '',
-      }
-    }) ?? []
+    data?.transactions.map((tx) => ({
+      id: tx.id.toString(),
+      type: tx.type,
+      amount: tx.amount,
+      occurredAt: new Date(tx.occurred_at).toISOString().split('T')[0],
+      description: tx.description,
+    })) ?? []
 
   return (
     <div className="container mx-auto py-6">

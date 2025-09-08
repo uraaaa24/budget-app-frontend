@@ -18,5 +18,5 @@ export type Transaction = {
   occurredAt: string
   // category: string
   // account: string
-  description: string
+  description?: string
 }

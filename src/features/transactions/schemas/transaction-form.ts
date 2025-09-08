@@ -14,7 +14,7 @@ export const transactionFormFieldNames = {
 
 export const transactionFormSchema = z.object({
   type: z.enum([TransactionType.expense, TransactionType.income]),
-  amount: z.number().min(0, { message: 'Amount must be at least 0' }),
+  amount: z.number().min(1, { message: 'Amount must be at least 1' }),
   occurredAt: z.date(),
   description: z.string().max(255).optional(),
 })
