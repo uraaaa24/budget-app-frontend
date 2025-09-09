@@ -1,6 +1,6 @@
-import { Trash } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
+import DeleteIconButton from '@/components/parts/buttons/delete-icon-button'
 import { Button } from '@/components/ui/button'
 import {
   Popover,
@@ -40,13 +40,7 @@ const TransactionDeleteAction = ({
   return (
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
-        <Button
-          variant="ghost"
-          size="sm"
-          className="text-red-600 hover:text-red-800 hover:bg-red-50"
-        >
-          <Trash size={16} />
-        </Button>
+        <DeleteIconButton />
       </PopoverTrigger>
       <PopoverContent className="w-48" align="center" side="top">
         <div className="space-y-3">
