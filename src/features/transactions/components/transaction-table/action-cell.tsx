@@ -1,5 +1,12 @@
 import { Trash } from 'lucide-react'
+import { useTranslations } from 'next-intl'
+import { useState } from 'react'
 import { Button } from '@/components/ui/button'
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@/components/ui/popover'
 import {
   useDeleteTransaction,
   useGetTransactions,
@@ -13,8 +20,11 @@ type TransactionDeleteActionProps = {
 const TransactionDeleteAction = ({
   transactionId,
 }: TransactionDeleteActionProps) => {
-  const { deleteTransaction, isLoading, error } =
-    useDeleteTransaction(transactionId)
+  const utilT = useTranslations('Utils')
+
+  const [isOpen, setIsOpen] = useState(false)
+
+  const { deleteTransaction, isLoading } = useDeleteTransaction(transactionId)
   const { mutate } = useGetTransactions()
 
   const handleDelete = async () => {
@@ -22,17 +32,43 @@ const TransactionDeleteAction = ({
 
     await deleteTransaction()
     await mutate()
+    setIsOpen(false)
   }
 
+  const handleCancel = () => setIsOpen(false)
+
   return (
-    <Button
-      variant="ghost"
-      onClick={handleDelete}
-      disabled={isLoading}
-      className="text-red-600 hover:text-red-800"
-    >
-      <Trash size={16} />
-    </Button>
+    <Popover open={isOpen} onOpenChange={setIsOpen}>
+      <PopoverTrigger asChild>
+        <Button
+          variant="ghost"
+          size="sm"
+          className="text-red-600 hover:text-red-800 hover:bg-red-50"
+        >
+          <Trash size={16} />
+        </Button>
+      </PopoverTrigger>
+      <PopoverContent className="w-48" align="center" side="top">
+        <div className="space-y-3">
+          <p className="text-sm text-gray-700 text-center">
+            {utilT('Message.deleteConfirm')}
+          </p>
+          <div className="flex justify-center space-x-2">
+            <Button variant="outline" size="sm" onClick={handleCancel}>
+              {utilT('Action.cancel')}
+            </Button>
+            <Button
+              variant="destructive"
+              size="sm"
+              onClick={handleDelete}
+              disabled={isLoading}
+            >
+              {utilT('Action.delete')}
+            </Button>
+          </div>
+        </div>
+      </PopoverContent>
+    </Popover>
   )
 }
 

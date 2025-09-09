@@ -1,4 +1,17 @@
 {
+  "Utils": {
+    "Action": {
+      "cancel": "Cancel",
+      "delete": "Delete",
+      "edit": "Edit",
+      "save": "Save",
+      "close": "Close",
+      "confirm": "Confirm"
+    },
+    "Message": {
+      "deleteConfirm": "Are you sure you want to delete this item?"
+    }
+  },
   "HomePage": {
     "title": "Hello world!",
     "description": "This is a simple Next.js application."

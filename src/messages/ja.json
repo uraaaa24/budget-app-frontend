@@ -1,4 +1,17 @@
 {
+  "Utils": {
+    "Action": {
+      "cancel": "キャンセル",
+      "delete": "削除",
+      "edit": "編集",
+      "save": "保存",
+      "close": "閉じる",
+      "confirm": "確認"
+    },
+    "Message": {
+      "deleteConfirm": "本当に削除しますか？"
+    }
+  },
   "HomePage": {
     "title": "こんにちは、世界！",
     "description": "これはシンプルなNext.jsアプリケーションです。"
