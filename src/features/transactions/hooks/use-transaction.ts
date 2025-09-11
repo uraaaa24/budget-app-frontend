@@ -9,6 +9,8 @@ import type {
   CreateTransactionRequest,
   CreateTransactionResponse,
   GetTransactionsResponse,
+  PutTransactionRequest,
+  PutTransactionResponse,
 } from '../types/api'
 
 export const useGetTransactions = () => {
@@ -49,6 +51,39 @@ export const useCreateTransaction = () => {
 
   return {
     createTransaction,
+    data,
+    error,
+    isLoading,
+  }
+}
+
+export const usePutTransaction = (id: string) => {
+  const {
+    trigger,
+    data,
+    error,
+    isMutating: isLoading,
+  } = useMutation<PutTransactionRequest, PutTransactionResponse>(
+    `http://localhost:8000/transactions/${id}`,
+    CRUD_METHODS.PUT,
+  )
+
+  const putTransaction = useCallback(
+    (transactionData: TransactionFormInferType) => {
+      const data: PutTransactionRequest = {
+        type: transactionData.type,
+        amount: transactionData.amount,
+        occurred_at: transactionData.occurredAt,
+        description: transactionData.description,
+      }
+
+      return trigger(data)
+    },
+    [trigger],
+  )
+
+  return {
+    putTransaction,
     data,
     error,
     isLoading,

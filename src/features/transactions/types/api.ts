@@ -21,6 +21,12 @@ export type CreateTransactionRequest = {
   description?: string
 }
 
+export type PutTransactionRequest = CreateTransactionRequest
+
+export type PutTransactionResponse = {
+  message?: string
+}
+
 export type CreateTransactionResponse = {
   transaction: Transaction
 }
