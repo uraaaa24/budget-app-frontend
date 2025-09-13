@@ -49,11 +49,11 @@ const TransactionDeleteAction = ({
       <PopoverContent className="w-48" align="center" side="top">
         <div className="space-y-3">
           <p className="text-sm text-gray-700 text-center">
-            {utilT('Message.deleteConfirm')}
+            {utilT('Messages.deleteConfirm')}
           </p>
           <div className="flex justify-center space-x-2">
             <Button variant="outline" size="sm" onClick={handleCancel}>
-              {utilT('Action.cancel')}
+              {utilT('Actions.cancel')}
             </Button>
             <Button
               variant="destructive"
@@ -61,7 +61,7 @@ const TransactionDeleteAction = ({
               onClick={handleDelete}
               disabled={isLoading}
             >
-              {utilT('Action.delete')}
+              {utilT('Actions.delete')}
             </Button>
           </div>
         </div>
@@ -75,7 +75,8 @@ type TransactionEditActionProps = {
 }
 
 const TransactionEditAction = ({ transaction }: TransactionEditActionProps) => {
-  const t = useTranslations('TransactionsPage')
+  const utilT = useTranslations('Utils.Actions')
+  const t = useTranslations('TransactionsPage.Form.Edit')
 
   const { putTransaction, error, isLoading } = usePutTransaction(transaction.id)
   const { mutate } = useGetTransactions()
@@ -94,11 +95,11 @@ const TransactionEditAction = ({ transaction }: TransactionEditActionProps) => {
   })
 
   const transactionFormMessages = {
-    title: t('TransactionForm.editTitle'),
-    description: t('TransactionForm.editDescription'),
-    submit: t('TransactionForm.update'),
-    cancel: t('TransactionForm.cancel'),
-    isLoading: t('TransactionForm.loading'),
+    title: t('title'),
+    description: t('description'),
+    submit: utilT('update'),
+    cancel: utilT('cancel'),
+    isLoading: utilT('loading'),
   }
 
   const tranasctionFormProps = {

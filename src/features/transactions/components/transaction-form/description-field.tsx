@@ -10,7 +10,7 @@ import {
 const DESCRIPTION_TEXTAREA_ROWS = 3
 
 const TransactionDescriptionField = () => {
-  const t = useTranslations('TransactionsPage.TransactionForm.Fields')
+  const t = useTranslations('TransactionsPage.Form.Fields')
   const { control } = useFormContext<TransactionFormInferType>()
 
   return (

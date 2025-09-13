@@ -8,7 +8,9 @@ import { useTransactionForm } from '../../hooks/use-transaction-form'
 import TransactionFormDrawer from '../transaction-form-drawer'
 
 const TransactionForm = () => {
-  const t = useTranslations('TransactionsPage')
+  const utilT = useTranslations('Utils.Actions')
+  const t = useTranslations('TransactionsPage.Form.Create')
+
   const { createTransaction, error, isLoading } = useCreateTransaction()
 
   const { form, handleSubmit } = useTransactionForm({
@@ -24,18 +26,18 @@ const TransactionForm = () => {
   })
 
   const transactionFormMessages = {
-    title: t('TransactionForm.title'),
-    description: t('TransactionForm.description'),
-    submit: t('TransactionForm.submit'),
-    cancel: t('TransactionForm.cancel'),
-    isLoading: t('TransactionForm.loading'),
+    title: t('title'),
+    description: t('description'),
+    submit: utilT('save'),
+    cancel: utilT('close'),
+    isLoading: utilT('loading'),
   }
 
   const transactionFormProps = {
     trigger: (
       <Button variant="default" className="cursor-pointer">
         <Plus />
-        {t('addTransaction')}
+        {t('button')}
       </Button>
     ),
     form,

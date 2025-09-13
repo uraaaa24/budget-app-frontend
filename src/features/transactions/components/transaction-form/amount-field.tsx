@@ -8,7 +8,7 @@ import {
 } from '../../schemas/transaction-form'
 
 const TransactionAmountField = () => {
-  const t = useTranslations('TransactionsPage.TransactionForm.Fields')
+  const t = useTranslations('TransactionsPage.Form.Fields')
   const { control } = useFormContext<TransactionFormInferType>()
 
   return (
