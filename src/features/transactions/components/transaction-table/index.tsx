@@ -5,6 +5,7 @@ import DataTable from '@/components/parts/tables/data-table'
 import { useGetTransactions } from '../../hooks/use-transaction'
 import type { Transaction } from '../../types/transaction'
 import TransactionActionCell from './action-cell'
+import TransactionTableAmountCell from './amount-cell'
 
 export type TransactionTableRow = Transaction
 
@@ -24,6 +25,14 @@ const columns: ColumnDef<TransactionTableRow>[] = [
     accessorKey: 'amount',
     header: 'Amount',
     enableSorting: true,
+    cell: ({ row: { original: transaction } }) => {
+      return (
+        <TransactionTableAmountCell
+          transactionType={transaction.type}
+          amount={transaction.amount}
+        />
+      )
+    },
   },
   {
     accessorKey: 'category',

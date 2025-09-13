@@ -42,7 +42,8 @@
       },
       "submit": "Submit",
       "update": "Update",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "loading": "Loading..."
     }
   }
 }
