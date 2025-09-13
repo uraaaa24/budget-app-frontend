@@ -5,11 +5,10 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { useCreateTransaction } from '../../hooks/use-transaction'
 import { useTransactionForm } from '../../hooks/use-transaction-form'
-import TransactionFormSheet from '../transaction-form-sheet'
+import TransactionFormDrawer from '../transaction-form-drawer'
 
 const TransactionForm = () => {
   const t = useTranslations('TransactionsPage')
-
   const { createTransaction, error, isLoading } = useCreateTransaction()
 
   const { form, handleSubmit } = useTransactionForm({
@@ -24,13 +23,15 @@ const TransactionForm = () => {
     },
   })
 
-  const transacrionFormMessages = {
+  const transactionFormMessages = {
     title: t('TransactionForm.title'),
     description: t('TransactionForm.description'),
-    submitButton: t('TransactionForm.submit'),
+    submit: t('TransactionForm.submit'),
+    cancel: t('TransactionForm.cancel'),
+    isLoading: t('TransactionForm.loading'),
   }
 
-  const tranasctionFormProps = {
+  const transactionFormProps = {
     trigger: (
       <Button variant="default" className="cursor-pointer">
         <Plus />
@@ -38,63 +39,13 @@ const TransactionForm = () => {
       </Button>
     ),
     form,
-    handleSubmit,
+    onSubmit: handleSubmit,
     isLoading,
     error,
-    ...transacrionFormMessages,
+    messages: transactionFormMessages,
   }
 
-  return (
-    <TransactionFormSheet {...tranasctionFormProps} />
-
-    // <Sheet open={open} onOpenChange={handleOpenChange}>
-    //   <SheetTrigger asChild>
-    //     <Button variant="default" className="cursor-pointer">
-    //       <Plus />
-    //       {t('addTransaction')}
-    //     </Button>
-    //   </SheetTrigger>
-
-    //   <SheetContent>
-    //     <Form {...form}>
-    //       <form
-    //         onSubmit={form.handleSubmit(handleSubmit)}
-    //         className="flex flex-col h-full"
-    //       >
-    //         <SheetHeader>
-    //           <SheetTitle>{t('TransactionForm.title')}</SheetTitle>
-    //           <SheetDescription>
-    //             {t('TransactionForm.description')}
-    //           </SheetDescription>
-    //         </SheetHeader>
-
-    //         <div className="flex flex-col px-8 flex-1 space-y-6">
-    //           <TransactionDateField />
-    //           <TransactionAmountField />
-    //           <TransactionDescriptionField />
-
-    //           {error && (
-    //             <div className="text-red-500 text-sm">{error.message}</div>
-    //           )}
-    //         </div>
-
-    //         <SheetFooter className="gap-2">
-    //           <Button type="submit" disabled={isLoading}>
-    //             {isLoading ? 'Saving...' : 'Save'}
-    //           </Button>
-    //           <Button
-    //             type="button"
-    //             variant="ghost"
-    //             onClick={() => setOpen(false)}
-    //           >
-    //             Cancel
-    //           </Button>
-    //         </SheetFooter>
-    //       </form>
-    //     </Form>
-    //   </SheetContent>
-    // </Sheet>
-  )
+  return <TransactionFormDrawer {...transactionFormProps} />
 }
 
 export default TransactionForm

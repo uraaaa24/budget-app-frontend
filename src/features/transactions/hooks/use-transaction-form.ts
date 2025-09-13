@@ -7,15 +7,15 @@ import {
   transactionFormSchema,
 } from '../schemas/transaction-form'
 
-type useTransactionFormProps = {
+type UseTransactionFormProps<TReturn = unknown> = {
   defaultValues?: TransactionFormInferType
-  onSubmit: (values: TransactionFormInferType) => Promise<void>
+  onSubmit: (values: TransactionFormInferType) => Promise<TReturn> | TReturn
 }
 
 export const useTransactionForm = ({
   defaultValues,
   onSubmit,
-}: useTransactionFormProps) => {
+}: UseTransactionFormProps) => {
   const form = useForm<TransactionFormInferType>({
     resolver: zodResolver(transactionFormSchema),
     defaultValues: defaultValues ?? {

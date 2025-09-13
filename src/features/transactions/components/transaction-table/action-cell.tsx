@@ -14,7 +14,7 @@ import {
   usePutTransaction,
 } from '../../hooks/use-transaction'
 import { useTransactionForm } from '../../hooks/use-transaction-form'
-import TransactionFormSheet from '../transaction-form-sheet'
+import TransactionFormDrawer from '../transaction-form-drawer'
 import type { TransactionTableRow } from '.'
 
 type TransactionDeleteActionProps = {
@@ -93,22 +93,24 @@ const TransactionEditAction = ({ transaction }: TransactionEditActionProps) => {
     },
   })
 
-  const transacrionFormMessages = {
+  const transactionFormMessages = {
     title: t('TransactionForm.editTitle'),
     description: t('TransactionForm.editDescription'),
-    submitButton: t('TransactionForm.update'),
+    submit: t('TransactionForm.update'),
+    cancel: t('TransactionForm.cancel'),
+    isLoading: t('TransactionForm.loading'),
   }
 
   const tranasctionFormProps = {
     trigger: <EditIconButton />,
     form,
-    handleSubmit,
+    onSubmit: handleSubmit,
     isLoading,
     error,
-    ...transacrionFormMessages,
+    messages: transactionFormMessages,
   }
 
-  return <TransactionFormSheet {...tranasctionFormProps} />
+  return <TransactionFormDrawer {...tranasctionFormProps} />
 }
 
 type TransactionActionCellProps = {

@@ -1,5 +1,5 @@
-import { useState } from 'react'
-import type { UseFormReturn } from 'react-hook-form'
+import { type ReactNode, useState } from 'react'
+import type { FieldValues, SubmitHandler, UseFormReturn } from 'react-hook-form'
 import { Button } from '@/components/ui/button'
 import { Form } from '@/components/ui/form'
 import {
@@ -11,38 +11,57 @@ import {
   SheetTitle,
   SheetTrigger,
 } from '@/components/ui/sheet'
-import type { TransactionFormInferType } from '../../schemas/transaction-form'
-import TransactionAmountField from '../transaction-form/amount-field'
-import TransactionDateField from '../transaction-form/date-field'
-import TransactionDescriptionField from '../transaction-form/description-field'
 
-type TransactionFormSheetMessages = {
+type FormDrawerMessages = {
   title: string
   description: string
-  submitButton: string
+  submit: string
+  cancel: string
+  isLoading: string
 }
 
-type TransactionFormSheetProps = TransactionFormSheetMessages & {
-  trigger: React.ReactNode
-  form: UseFormReturn<TransactionFormInferType>
-  handleSubmit: (values: TransactionFormInferType) => Promise<void>
+export type FormDrawerProps<
+  /** Raw form input values (direct from fields) */
+  TFieldValues extends FieldValues = FieldValues,
+  /** Extra context for resolver/validation */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TContext = any,
+  /** Values after resolver transform (defaults to TFieldValues) */
+  TTransformedValues = TFieldValues,
+> = {
+  trigger: ReactNode
+  form: UseFormReturn<TFieldValues, TContext, TTransformedValues>
+  onSubmit: (values: TTransformedValues) => Promise<void>
   isLoading: boolean
   error: Error | null
+  messages: FormDrawerMessages
+  children: ReactNode
 }
 
-const TransactionFormSheet = ({
+const FormDrawer = <
+  TFieldValues extends FieldValues = FieldValues,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  TContext = any,
+  TTransformedValues = TFieldValues,
+>({
   trigger,
   form,
-  handleSubmit,
+  onSubmit,
   isLoading,
   error,
-  ...messages
-}: TransactionFormSheetProps) => {
+  messages,
+  children,
+}: FormDrawerProps<TFieldValues, TContext, TTransformedValues>) => {
   const [open, setOpen] = useState(false)
 
   const handleOpenChange = (next: boolean) => {
     setOpen(next)
     if (!next) form.reset()
+  }
+
+  const handleSubmit: SubmitHandler<TTransformedValues> = async (values) => {
+    await onSubmit(values)
+    handleOpenChange(false)
   }
 
   return (
@@ -61,9 +80,7 @@ const TransactionFormSheet = ({
             </SheetHeader>
 
             <div className="flex flex-col px-8 flex-1 space-y-6">
-              <TransactionDateField />
-              <TransactionAmountField />
-              <TransactionDescriptionField />
+              {children}
 
               {error && (
                 <div className="text-red-500 text-sm">{error.message}</div>
@@ -72,14 +89,14 @@ const TransactionFormSheet = ({
 
             <SheetFooter className="gap-2">
               <Button type="submit" disabled={isLoading}>
-                {isLoading ? 'Saving...' : messages.submitButton}
+                {isLoading ? messages.isLoading : messages.submit}
               </Button>
               <Button
                 type="button"
                 variant="ghost"
                 onClick={() => setOpen(false)}
               >
-                Cancel
+                {messages.cancel}
               </Button>
             </SheetFooter>
           </form>
@@ -89,4 +106,4 @@ const TransactionFormSheet = ({
   )
 }
 
-export default TransactionFormSheet
+export default FormDrawer
