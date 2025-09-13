@@ -1,38 +1,20 @@
-import { zodResolver } from '@hookform/resolvers/zod'
-import { Pencil } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useState } from 'react'
-import { useForm } from 'react-hook-form'
 import DeleteIconButton from '@/components/parts/buttons/delete-icon-button'
 import EditIconButton from '@/components/parts/buttons/edit-icon-button'
 import { Button } from '@/components/ui/button'
-import { Form } from '@/components/ui/form'
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
 import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetFooter,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
-import {
   useDeleteTransaction,
   useGetTransactions,
   usePutTransaction,
 } from '../../hooks/use-transaction'
-import {
-  type TransactionFormInferType,
-  transactionFormSchema,
-} from '../../schemas/transaction-form'
-import TransactionAmountField from '../transaction-form/amount-field'
-import TransactionDateField from '../transaction-form/date-field'
-import TransactionDescriptionField from '../transaction-form/description-field'
+import { useTransactionForm } from '../../hooks/use-transaction-form'
+import TransactionFormSheet from '../transaction-form-sheet'
 import type { TransactionTableRow } from '.'
 
 type TransactionDeleteActionProps = {
@@ -98,80 +80,35 @@ const TransactionEditAction = ({ transaction }: TransactionEditActionProps) => {
   const { putTransaction, error, isLoading } = usePutTransaction(transaction.id)
   const { mutate } = useGetTransactions()
 
-  const [open, setOpen] = useState(false)
-
-  const form = useForm<TransactionFormInferType>({
-    resolver: zodResolver(transactionFormSchema),
+  const { form, handleSubmit } = useTransactionForm({
     defaultValues: {
       type: transaction.type,
       amount: transaction.amount,
       occurredAt: new Date(transaction.occurredAt),
       description: transaction.description ?? '',
     },
-  })
-
-  const onSubmit = async (values: TransactionFormInferType) => {
-    try {
+    onSubmit: async (values) => {
       await putTransaction(values)
       await mutate()
-      setOpen(false)
-      form.reset()
-    } catch (error) {
-      console.error('Transaction creation failed:', error)
-    }
+    },
+  })
+
+  const transacrionFormMessages = {
+    title: t('TransactionForm.editTitle'),
+    description: t('TransactionForm.editDescription'),
+    submitButton: t('TransactionForm.update'),
   }
 
-  const handleOpenChange = (next: boolean) => {
-    setOpen(next)
-    if (!next) form.reset()
+  const tranasctionFormProps = {
+    trigger: <EditIconButton />,
+    form,
+    handleSubmit,
+    isLoading,
+    error,
+    ...transacrionFormMessages,
   }
 
-  return (
-    <Sheet open={open} onOpenChange={handleOpenChange}>
-      <SheetTrigger asChild>
-        <EditIconButton />
-      </SheetTrigger>
-
-      <SheetContent>
-        <Form {...form}>
-          <form
-            onSubmit={form.handleSubmit(onSubmit)}
-            className="flex flex-col h-full"
-          >
-            <SheetHeader>
-              <SheetTitle>{t('TransactionForm.title')}</SheetTitle>
-              <SheetDescription>
-                {t('TransactionForm.description')}
-              </SheetDescription>
-            </SheetHeader>
-
-            <div className="flex flex-col px-8 flex-1 space-y-6">
-              <TransactionDateField />
-              <TransactionAmountField />
-              <TransactionDescriptionField />
-
-              {error && (
-                <div className="text-red-500 text-sm">{error.message}</div>
-              )}
-            </div>
-
-            <SheetFooter className="gap-2">
-              <Button type="submit" disabled={isLoading}>
-                {isLoading ? 'Saving...' : 'Save'}
-              </Button>
-              <Button
-                type="button"
-                variant="ghost"
-                onClick={() => setOpen(false)}
-              >
-                Cancel
-              </Button>
-            </SheetFooter>
-          </form>
-        </Form>
-      </SheetContent>
-    </Sheet>
-  )
+  return <TransactionFormSheet {...tranasctionFormProps} />
 }
 
 type TransactionActionCellProps = {

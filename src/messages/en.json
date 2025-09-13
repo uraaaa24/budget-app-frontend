@@ -29,6 +29,8 @@
     "TransactionForm": {
       "title": "Add Transaction",
       "description": "Fill in the details of the transaction.",
+      "editTitle": "Edit Transaction",
+      "editDescription": "Update the details of the transaction.",
       "Fields": {
         "date": "Date",
         "selectDate": "Select date",
@@ -39,6 +41,7 @@
         "Note": "Note"
       },
       "submit": "Submit",
+      "update": "Update",
       "cancel": "Cancel"
     }
   }
