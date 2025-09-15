@@ -20,7 +20,7 @@ export const useGetTransactions = () => {
     useSWR<GetTransactionsResponse>(
       'http://localhost:8000/transactions',
       authFetcher,
-      { revalidateOnFocus: false },
+      { revalidateOnFocus: false, revalidateIfStale: false },
     )
 
   return { data, isLoading, isValidating, error, mutate }
