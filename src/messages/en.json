@@ -36,6 +36,11 @@
         "description": "Update the details of the transaction."
       },
       "Fields": {
+        "Type": {
+          "label": "Type",
+          "expense": "Expense",
+          "income": "Income"
+        },
         "date": "Date",
         "selectDate": "Select date",
         "description": "Description",

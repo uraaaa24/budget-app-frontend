@@ -51,16 +51,14 @@ const columns: ColumnDef<TransactionTableRow>[] = [
   {
     id: 'actions',
     enableHiding: false,
-    cell: ({ row }) => {
-      const transaction = row.original
-
+    cell: ({ row: { original: transaction } }) => {
       return <TransactionActionCell transaction={transaction} />
     },
   },
 ]
 
 const TransactionTable = () => {
-  const { data, isLoading, error } = useGetTransactions()
+  const { data, isLoading, isValidating, error } = useGetTransactions()
 
   const tableData: TransactionTableRow[] =
     data?.transactions.map((tx) => ({
@@ -76,7 +74,7 @@ const TransactionTable = () => {
       <DataTable
         columns={columns}
         data={tableData}
-        isLoading={isLoading}
+        isLoading={isLoading || isValidating}
         error={error}
       />
     </div>

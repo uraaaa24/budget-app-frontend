@@ -6,6 +6,7 @@ import {
   type TransactionFormInferType,
   transactionFormSchema,
 } from '../schemas/transaction-form'
+import { TRANSACTION_TYPE } from '../types/transaction'
 
 type UseTransactionFormProps<TReturn = unknown> = {
   defaultValues?: TransactionFormInferType
@@ -19,7 +20,7 @@ export const useTransactionForm = ({
   const form = useForm<TransactionFormInferType>({
     resolver: zodResolver(transactionFormSchema),
     defaultValues: defaultValues ?? {
-      type: 'expense',
+      type: TRANSACTION_TYPE.EXPENSE,
       amount: 0,
       occurredAt: new Date(),
       description: '',

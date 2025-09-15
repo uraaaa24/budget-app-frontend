@@ -1,12 +1,12 @@
 /**
  * Transaction Type Constants
  */
-const TransactionType = {
+export const TRANSACTION_TYPE = {
   INCOME: 'income',
   EXPENSE: 'expense',
 } as const
 export type TransactionType =
-  (typeof TransactionType)[keyof typeof TransactionType]
+  (typeof TRANSACTION_TYPE)[keyof typeof TRANSACTION_TYPE]
 
 /**
  * Represents a financial transaction.

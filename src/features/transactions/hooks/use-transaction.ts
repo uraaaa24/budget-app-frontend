@@ -16,12 +16,14 @@ import type {
 export const useGetTransactions = () => {
   const { authFetcher } = useFetcher()
 
-  const { data, error, isLoading, mutate } = useSWR<GetTransactionsResponse>(
-    'http://localhost:8000/transactions',
-    authFetcher,
-  )
+  const { data, error, isLoading, isValidating, mutate } =
+    useSWR<GetTransactionsResponse>(
+      'http://localhost:8000/transactions',
+      authFetcher,
+      { revalidateOnFocus: false },
+    )
 
-  return { data, isLoading, error, mutate }
+  return { data, isLoading, isValidating, error, mutate }
 }
 
 export const useCreateTransaction = () => {

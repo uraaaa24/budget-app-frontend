@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { useCreateTransaction } from '../../hooks/use-transaction'
 import { useTransactionForm } from '../../hooks/use-transaction-form'
+import { TRANSACTION_TYPE } from '../../types/transaction'
 import TransactionFormDrawer from '../transaction-form-drawer'
 
 const TransactionForm = () => {
@@ -15,7 +16,7 @@ const TransactionForm = () => {
 
   const { form, handleSubmit } = useTransactionForm({
     defaultValues: {
-      type: 'expense',
+      type: TRANSACTION_TYPE.EXPENSE,
       amount: 0,
       occurredAt: new Date(),
       description: '',
