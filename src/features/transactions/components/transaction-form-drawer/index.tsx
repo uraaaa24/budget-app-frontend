@@ -3,6 +3,7 @@ import FormDrawer, {
 } from '@/components/parts/forms/form-drawer'
 import type { TransactionFormInferType } from '../../schemas/transaction-form'
 import TransactionAmountField from '../transaction-form/amount-field'
+import TransactionCategoryField from '../transaction-form/category-field'
 import TransactionDateField from '../transaction-form/date-field'
 import TransactionDescriptionField from '../transaction-form/description-field'
 import TransactionTypeField from '../transaction-form/type-field'
@@ -18,6 +19,7 @@ const TransactionFormDrawer = (props: TransactionFormDrawerProps) => {
       <TransactionTypeField />
       <TransactionDateField />
       <TransactionAmountField />
+      <TransactionCategoryField />
       <TransactionDescriptionField />
     </FormDrawer>
   )
