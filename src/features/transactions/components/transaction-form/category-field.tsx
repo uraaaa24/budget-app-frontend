@@ -9,13 +9,15 @@ import {
   transactionFormFieldNames,
 } from '../../schemas/transaction-form'
 
-const dummyCategories: ComboboxOption[] = [
-  { id: '1', label: 'Food' },
-  { id: '2', label: 'Transport' },
-  { id: '3', label: 'Shopping' },
-]
+type TransactionCategoryFieldProps = {
+  categories: ComboboxOption[]
+  isLoading: boolean
+}
 
-const TransactionCategoryField = () => {
+const TransactionCategoryField = ({
+  categories,
+  isLoading,
+}: TransactionCategoryFieldProps) => {
   const t = useTranslations('TransactionsPage.Form.Fields')
   const { control } = useFormContext<TransactionFormInferType>()
 
@@ -24,13 +26,17 @@ const TransactionCategoryField = () => {
       control={control}
       name={transactionFormFieldNames.category}
       label={t('category')}
-      renderControl={(field) => (
-        <Combobox
-          options={dummyCategories}
-          value={field.value || ''}
-          setValue={field.onChange}
-        />
-      )}
+      renderControl={(field) =>
+        isLoading ? (
+          <div className="h-9 w-full bg-muted animate-pulse rounded-md" />
+        ) : (
+          <Combobox
+            options={categories}
+            value={field.value || ''}
+            setValue={field.onChange}
+          />
+        )
+      }
     />
   )
 }

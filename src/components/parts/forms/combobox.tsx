@@ -1,8 +1,7 @@
 'use client'
 
 import { Check, ChevronsUpDown } from 'lucide-react'
-import type { Dispatch, SetStateAction } from 'react'
-import * as React from 'react'
+import { type Dispatch, type SetStateAction, useState } from 'react'
 import { Button } from '@/components/ui/button'
 import {
   Command,
@@ -31,7 +30,7 @@ type ComboboxProps = {
 }
 
 const Combobox = ({ options, value, setValue }: ComboboxProps) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = useState(false)
 
   return (
     <Popover open={open} onOpenChange={setOpen}>
@@ -58,9 +57,9 @@ const Combobox = ({ options, value, setValue }: ComboboxProps) => {
               {options.map((option) => (
                 <CommandItem
                   key={option.id}
-                  value={option.id}
-                  onSelect={(current) => {
-                    setValue(current)
+                  value={option.label}
+                  onSelect={() => {
+                    setValue(option.id)
                     setOpen(false)
                   }}
                 >

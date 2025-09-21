@@ -28,7 +28,7 @@ const DataTableBody = <TData,>({
                 const cellId = crypto.randomUUID()
                 return (
                   <TableCell key={cellId} className="p-4">
-                    <div className="h-9 bg-muted animate-pulse rounded" />
+                    <div className="h-9 bg-muted animate-pulse rounded-md" />
                   </TableCell>
                 )
               })}
