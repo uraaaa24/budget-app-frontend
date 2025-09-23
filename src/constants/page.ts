@@ -1,9 +1,13 @@
 import { Home, PiggyBank, Settings } from 'lucide-react'
 import type { Locale } from './locale'
 
-export const HOME_PAGE = '/'
-export const TRANSACTIONS_PAGE = '/transactions'
-export const SETTINGS_PAGE = '/settings'
+export const PAGES = {
+  HOME: '/',
+  TRANSACTIONS: '/transactions',
+  SETTINGS: '/settings',
+} as const
+
+export type PageKey = keyof typeof PAGES
 
 /**
  * Menu items for the sidebar
@@ -11,17 +15,17 @@ export const SETTINGS_PAGE = '/settings'
 export const MENU_ITEMS = [
   {
     titleKey: 'dashboard',
-    url: HOME_PAGE,
+    url: PAGES.HOME,
     icon: Home,
   },
   {
     titleKey: 'transactions',
-    url: TRANSACTIONS_PAGE,
+    url: PAGES.TRANSACTIONS,
     icon: PiggyBank,
   },
   {
     titleKey: 'settings',
-    url: SETTINGS_PAGE,
+    url: PAGES.SETTINGS,
     icon: Settings,
   },
 ] as const

@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useLocale, useTranslations } from 'next-intl'
+import { useTranslations } from 'next-intl'
 import {
   SidebarContent,
   SidebarGroup,
@@ -9,13 +9,11 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from '@/components/ui/sidebar'
-import type { Locale } from '@/constants/locale'
-import { localizePath, MENU_ITEMS } from '@/constants/page'
+import { MENU_ITEMS } from '@/constants/page'
 import { cn } from '@/lib/utils'
 
 const AppSidebarContent = () => {
   const pathname = usePathname()
-  const locale = useLocale() as Locale
   const t = useTranslations('Navigation')
 
   return (
@@ -24,7 +22,8 @@ const AppSidebarContent = () => {
         <SidebarGroupContent>
           <SidebarMenu>
             {MENU_ITEMS.map((item) => {
-              const isActive = pathname === localizePath(locale, item.url)
+              const isActive =
+                pathname === item.url || pathname.startsWith(item.url + '/')
 
               return (
                 <SidebarMenuItem key={item.titleKey} className="mb-2">
