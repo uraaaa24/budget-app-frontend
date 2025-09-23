@@ -47,10 +47,16 @@ export type ComboboxOption = {
 type ComboboxProps = {
   options: ComboboxOption[]
   value: string
-  setValue: Dispatch<SetStateAction<string>>
+  setValue: (id: string) => void
+  disabled?: boolean
 }
 
-const Combobox = ({ options, value, setValue }: ComboboxProps) => {
+const Combobox = ({
+  options,
+  value,
+  setValue,
+  disabled = false,
+}: ComboboxProps) => {
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
 
@@ -71,6 +77,7 @@ const Combobox = ({ options, value, setValue }: ComboboxProps) => {
         <Button
           variant="outline"
           role="combobox"
+          disabled={disabled}
           aria-expanded={open}
           className="w-full justify-between"
         >

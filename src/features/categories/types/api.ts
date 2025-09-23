@@ -1,6 +1,6 @@
 import type { TransactionType } from '@/features/transactions/types/transaction'
 
-type Category = {
+export type Category = {
   id: string
   type: TransactionType
   name: string

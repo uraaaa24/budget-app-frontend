@@ -17,14 +17,6 @@ type TransactionFormDrawerProps = Omit<
 
 const TransactionFormDrawer = (props: TransactionFormDrawerProps) => {
   const { data, isLoading } = useGetTransactionCategories()
-  const categoryOptions = useMemo(() => {
-    return (
-      data?.categories.map((category) => ({
-        id: category.id,
-        label: category.name,
-      })) || []
-    )
-  }, [data])
 
   return (
     <FormDrawer<TransactionFormInferType> {...props}>
@@ -32,7 +24,7 @@ const TransactionFormDrawer = (props: TransactionFormDrawerProps) => {
       <TransactionDateField />
       <TransactionAmountField />
       <TransactionCategoryField
-        categories={categoryOptions}
+        categories={data?.categories || []}
         isLoading={isLoading}
       />
       <TransactionDescriptionField />
