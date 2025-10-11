@@ -42,6 +42,7 @@ export const useCreateTransaction = () => {
       const data: CreateTransactionRequest = {
         type: transactionData.type,
         amount: transactionData.amount,
+        category_id: transactionData.categoryId,
         occurred_at: transactionData.occurredAt,
         description: transactionData.description,
       }
@@ -75,6 +76,7 @@ export const usePutTransaction = (id: string) => {
       const data: PutTransactionRequest = {
         type: transactionData.type,
         amount: transactionData.amount,
+        category_id: transactionData.categoryId,
         occurred_at: transactionData.occurredAt,
         description: transactionData.description,
       }

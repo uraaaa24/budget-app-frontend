@@ -38,6 +38,9 @@ const columns: ColumnDef<TransactionTableRow>[] = [
     accessorKey: 'category',
     header: 'Category',
     enableSorting: true,
+    cell: ({ row: { original: transaction } }) => {
+      return transaction.category?.name
+    },
   },
   {
     accessorKey: 'account',
@@ -65,6 +68,7 @@ const TransactionTable = () => {
       id: tx.id.toString(),
       type: tx.type,
       amount: tx.amount,
+      category: tx.category,
       occurredAt: new Date(tx.occurred_at).toISOString().split('T')[0],
       description: tx.description,
     })) ?? []

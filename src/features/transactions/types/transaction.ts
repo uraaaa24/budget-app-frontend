@@ -1,3 +1,5 @@
+import type { CategorySummary } from './api'
+
 /**
  * Transaction Type Constants
  */
@@ -16,6 +18,7 @@ export type Transaction = {
   type: TransactionType
   amount: number
   occurredAt: string
+  category: CategorySummary | null
   // category: string
   // account: string
   description?: string

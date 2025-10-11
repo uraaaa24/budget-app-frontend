@@ -1,10 +1,16 @@
 import type { TransactionType } from './transaction'
 
+export type CategorySummary = {
+  id: string
+  name: string
+}
+
 type Transaction = {
   id: number
   type: TransactionType
   amount: number
   occurred_at: Date
+  category: CategorySummary | null
   description?: string
   created_at: string
   updated_at: string
@@ -17,6 +23,7 @@ export type GetTransactionsResponse = {
 export type CreateTransactionRequest = {
   type: TransactionType
   amount: number
+  category_id: string | undefined
   occurred_at: Date
   description?: string
 }

@@ -25,7 +25,7 @@ const TransactionCategoryField = ({
   const { control, watch, setValue } =
     useFormContext<TransactionFormInferType>()
   const transactionType = watch(transactionFormFieldNames.type)
-  const currentCategoryId = watch(transactionFormFieldNames.category)
+  const currentCategoryId = watch(transactionFormFieldNames.categoryId)
 
   const lastSelectedByTypeRef = useRef<Record<string, string | undefined>>({})
 
@@ -34,7 +34,7 @@ const TransactionCategoryField = ({
    */
   const handleCategoryChange = (id: string) => {
     lastSelectedByTypeRef.current[transactionType] = id
-    setValue(transactionFormFieldNames.category, id, { shouldDirty: true })
+    setValue(transactionFormFieldNames.categoryId, id, { shouldDirty: true })
   }
 
   /**
@@ -57,20 +57,20 @@ const TransactionCategoryField = ({
     // restore last valid selection
     const lastSelectedId = lastSelectedByTypeRef.current[transactionType]
     if (isValidCategoryId(lastSelectedId)) {
-      setValue(transactionFormFieldNames.category, lastSelectedId, {
+      setValue(transactionFormFieldNames.categoryId, lastSelectedId, {
         shouldDirty: true,
       })
       return
     }
 
     // otherwise reset
-    setValue(transactionFormFieldNames.category, '', { shouldDirty: true })
+    setValue(transactionFormFieldNames.categoryId, '', { shouldDirty: true })
   }, [transactionType, filteredCategories, currentCategoryId, setValue])
 
   return (
     <FormFieldItem
       control={control}
-      name={transactionFormFieldNames.category}
+      name={transactionFormFieldNames.categoryId}
       label={t('category')}
       renderControl={(field) =>
         isLoading ? (

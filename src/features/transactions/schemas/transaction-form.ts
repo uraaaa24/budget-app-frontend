@@ -8,7 +8,7 @@ const TransactionType = {
 export const transactionFormFieldNames = {
   type: 'type',
   amount: 'amount',
-  category: 'category',
+  categoryId: 'categoryId',
   occurredAt: 'occurredAt',
   description: 'description',
 } as const
@@ -16,7 +16,7 @@ export const transactionFormFieldNames = {
 export const transactionFormSchema = z.object({
   type: z.enum([TransactionType.expense, TransactionType.income]),
   amount: z.number().min(1, { message: 'Amount must be at least 1' }),
-  category: z.string().optional(),
+  categoryId: z.string().optional(),
   occurredAt: z.date(),
   description: z.string().max(255).optional(),
 })

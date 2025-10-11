@@ -85,6 +85,7 @@ const TransactionEditAction = ({ transaction }: TransactionEditActionProps) => {
     defaultValues: {
       type: transaction.type,
       amount: transaction.amount,
+      categoryId: transaction.category?.id,
       occurredAt: new Date(transaction.occurredAt),
       description: transaction.description ?? '',
     },
