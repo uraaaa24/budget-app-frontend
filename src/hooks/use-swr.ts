@@ -33,6 +33,10 @@ export const useFetcher = () => {
       const [url, init = {}] = args
       const token = await getToken({ template: env.CLERK_JWT_TEMPLATE_NAME })
 
+      if (!token) {
+        throw new Error('Authentication token is not available. Please sign in.')
+      }
+
       return fetcher<T>(url, {
         ...init,
         headers: {
