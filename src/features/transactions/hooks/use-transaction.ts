@@ -2,6 +2,7 @@
 
 import { useCallback } from 'react'
 import useSWR from 'swr'
+import { env } from '@/config/env'
 import { CRUD_METHODS } from '@/constants/api'
 import { useFetcher, useMutation } from '@/hooks/use-swr'
 import type { TransactionFormInferType } from '../schemas/transaction-form'
@@ -18,7 +19,7 @@ export const useGetTransactions = () => {
 
   const { data, error, isLoading, isValidating, mutate } =
     useSWR<GetTransactionsResponse>(
-      'http://localhost:8000/transactions',
+      `${env.API_URL}/transactions`,
       authFetcher,
       { revalidateOnFocus: false, revalidateIfStale: false },
     )
@@ -33,7 +34,7 @@ export const useCreateTransaction = () => {
     error,
     isMutating: isLoading,
   } = useMutation<CreateTransactionRequest, CreateTransactionResponse>(
-    'http://localhost:8000/transactions',
+    `${env.API_URL}/transactions`,
     CRUD_METHODS.POST,
   )
 
@@ -67,7 +68,7 @@ export const usePutTransaction = (id: string) => {
     error,
     isMutating: isLoading,
   } = useMutation<PutTransactionRequest, PutTransactionResponse>(
-    `http://localhost:8000/transactions/${id}`,
+    `${env.API_URL}/transactions/${id}`,
     CRUD_METHODS.PUT,
   )
 
@@ -101,7 +102,7 @@ export const useDeleteTransaction = (id: string) => {
     error,
     isMutating: isLoading,
   } = useMutation<null, { message: string }>(
-    `http://localhost:8000/transactions/${id}`,
+    `${env.API_URL}/transactions/${id}`,
     CRUD_METHODS.DELETE,
   )
 
