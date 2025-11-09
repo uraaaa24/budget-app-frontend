@@ -10,7 +10,6 @@ export default async function HomePage() {
     <>
       <h1>{t('title')}</h1>
       <p>{t('description')}</p>
-      <p>hello, {userId}</p>
     </>
   )
 }
