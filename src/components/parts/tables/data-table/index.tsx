@@ -80,7 +80,7 @@ const DataTable = <TData, TValue>({
   })
 
   return (
-    <div className="overflow-hidden rounded-lg border">
+    <div className="overflow-hidden rounded-lg border bg-white">
       <Table>
         {/* Header */}
         <DataTableHeader headerGroups={table.getHeaderGroups()} />

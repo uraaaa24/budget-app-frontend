@@ -9,7 +9,7 @@ import {
 
 const AppSidebarHeader = () => {
   return (
-    <SidebarHeader className="bg-white pb-2">
+    <SidebarHeader className="pb-4">
       <SidebarMenu>
         <SidebarMenuItem>
           <SidebarMenuButton

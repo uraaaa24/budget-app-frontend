@@ -9,9 +9,11 @@ import AppSidebarHeader from './sidebar-header'
  */
 const AppSidebar = () => {
   return (
-    <Sidebar className="p-6">
-      <AppSidebarHeader />
-      <AppSidebarContent />
+    <Sidebar>
+      <div className="p-6 bg-green-50/50 h-full flex flex-col">
+        <AppSidebarHeader />
+        <AppSidebarContent />
+      </div>
     </Sidebar>
   )
 }

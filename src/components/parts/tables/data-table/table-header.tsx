@@ -32,7 +32,7 @@ const DataTableHeader = <TData,>({
                         : 'descending'
                       : 'none'
                   }
-                  className="bg-gray-50 py-2 font-semibold text-gray-600"
+                  className="bg-gray-50 font-semibold text-gray-600"
                 >
                   <Button
                     type="button"
@@ -62,7 +62,7 @@ const DataTableHeader = <TData,>({
             return (
               <TableHead
                 key={header.id}
-                className="p-6 text-left font-semibold text-gray-600 bg-gray-50"
+                className="p-4 text-left font-semibold text-gray-600 bg-gray-50"
               >
                 {flexRender(headerDef, header.getContext())}
               </TableHead>

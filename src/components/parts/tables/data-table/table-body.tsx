@@ -43,7 +43,7 @@ const DataTableBody = <TData,>({
     return (
       <TableBody>
         <TableRow>
-          <TableCell colSpan={columnCount} className="h-32">
+          <TableCell colSpan={columnCount} className="h-24">
             <div className="flex flex-col items-center justify-center space-y-3">
               <div className="flex items-center space-x-2 text-destructive">
                 <AlertCircle className="h-6 w-6" />
@@ -69,7 +69,7 @@ const DataTableBody = <TData,>({
             className="transition-colors hover:bg-muted/50"
           >
             {row.getVisibleCells().map((cell) => (
-              <TableCell key={cell.id} className="p-6">
+              <TableCell key={cell.id} className="p-4">
                 {flexRender(cell.column.columnDef.cell, cell.getContext())}
               </TableCell>
             ))}
@@ -77,7 +77,7 @@ const DataTableBody = <TData,>({
         ))
       ) : (
         <TableRow>
-          <TableCell colSpan={columnCount} className="h-32">
+          <TableCell colSpan={columnCount} className="h-24">
             <div className="flex flex-col items-center justify-center space-y-3">
               <Database className="h-12 w-12 text-muted-foreground/50" />
               <div className="text-lg font-medium text-muted-foreground">

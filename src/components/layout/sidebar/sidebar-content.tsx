@@ -17,7 +17,7 @@ const AppSidebarContent = () => {
   const t = useTranslations('Navigation')
 
   return (
-    <SidebarContent className="bg-white">
+    <SidebarContent>
       <SidebarGroup>
         <SidebarGroupContent>
           <SidebarMenu>
@@ -26,20 +26,20 @@ const AppSidebarContent = () => {
                 pathname === item.url || pathname.startsWith(item.url + '/')
 
               return (
-                <SidebarMenuItem key={item.titleKey} className="mb-2">
+                <SidebarMenuItem key={item.titleKey} className="mb-1">
                   <SidebarMenuButton
                     asChild
                     isActive={isActive}
                     className={cn(
-                      'flex h-11 items-center gap-3 px-4',
-                      'rounded-lg text-sm font-medium transition-colors',
-                      'data-[active=true]:bg-emerald-50 data-[active=true]:text-emerald-700',
-                      'hover:bg-emerald-50/60 hover:text-emerald-700/90',
-                      'active:bg-emerald-50/60 active:text-emerald-700/90',
+                      'flex h-12 items-center gap-3 px-4',
+                      'rounded-lg text-base font-medium transition-colors',
+                      'data-[active=true]:bg-green-200/80 data-[active=true]:text-green-700',
+                      'hover:bg-green-100/80 hover:text-green-700/90',
+                      'active:bg-green-100/80 active:text-green-700/90',
                     )}
                   >
                     <Link href={item.url} className="flex items-center gap-2">
-                      <item.icon className="h-5 w-5 shrink-0" />
+                      <item.icon className="h-8 w-8 shrink-0" />
                       <span>{t(item.titleKey)}</span>
                     </Link>
                   </SidebarMenuButton>

@@ -1,5 +1,5 @@
 import { ClerkProvider } from '@clerk/nextjs'
-import { Noto_Sans } from 'next/font/google'
+import { Noto_Sans_JP } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import Header from '@/components/layout/header'
@@ -7,7 +7,7 @@ import AppSidebar from '@/components/layout/sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { routing } from '@/i18n/routing'
 
-const notoSans = Noto_Sans({
+const notoSans = Noto_Sans_JP({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-noto-sans',
@@ -31,10 +31,12 @@ export default async function LocaleLayout({
             <SidebarProvider>
               <AppSidebar />
               <SidebarInset>
-                <Header />
-                <main className="flex-1 overflow-y-auto px-16 container py-8">
-                  {children}
-                </main>
+                <div className="bg-white min-h-screen">
+                  <Header />
+                  <main className="flex-1 overflow-y-auto px-16 container py-8">
+                    {children}
+                  </main>
+                </div>
               </SidebarInset>
             </SidebarProvider>
           </NextIntlClientProvider>
