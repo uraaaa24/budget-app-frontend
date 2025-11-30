@@ -86,7 +86,7 @@ const TransactionEditAction = ({ transaction }: TransactionEditActionProps) => {
       type: transaction.type,
       amount: transaction.amount,
       categoryId: transaction.category?.id,
-      occurredAt: new Date(transaction.occurredAt),
+      occurredAt: transaction.occurredAt,
       description: transaction.description ?? '',
     },
     onSubmit: async (values) => {
