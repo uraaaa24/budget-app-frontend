@@ -1,4 +1,3 @@
-import { ArrowDownCircle, Scale } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/lib/utils'
 
@@ -43,7 +42,7 @@ const PeriodCard = ({ amount, type }: PeriodCardProps) => {
 
       <div
         className={cn(
-          'text-3xl font-semibold tracking-tight',
+          'text-2xl font-semibold tracking-tight',
           getAmountColorClass(type, amount),
           isZero && 'text-gray-400',
         )}

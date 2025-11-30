@@ -2,6 +2,7 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { formatDateToYmd } from '@/lib/date'
 import {
   type TransactionFormInferType,
   transactionFormSchema,
@@ -22,7 +23,7 @@ export const useTransactionForm = ({
     defaultValues: defaultValues ?? {
       type: TRANSACTION_TYPE.EXPENSE,
       amount: 0,
-      occurredAt: new Date(),
+      occurredAt: formatDateToYmd(new Date()),
       description: '',
     },
   })

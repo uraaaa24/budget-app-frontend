@@ -3,6 +3,7 @@
 import { Plus } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
+import { formatDateToYmd } from '@/lib/date'
 import { useCreateTransaction } from '../../hooks/use-transaction'
 import { useTransactionForm } from '../../hooks/use-transaction-form'
 import { TRANSACTION_TYPE } from '../../types/transaction'
@@ -18,7 +19,7 @@ const TransactionForm = () => {
     defaultValues: {
       type: TRANSACTION_TYPE.EXPENSE,
       amount: 0,
-      occurredAt: new Date(),
+      occurredAt: formatDateToYmd(new Date()),
       description: '',
     },
     onSubmit: async (values) => {
