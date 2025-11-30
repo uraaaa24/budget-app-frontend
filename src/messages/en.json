@@ -15,8 +15,7 @@
     }
   },
   "Navigation": {
-    "dashboard": "Dashboard",
-    "transactions": "Transactions",
+    "home": "Home",
     "settings": "Settings"
   },
   "HomePage": {

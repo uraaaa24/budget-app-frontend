@@ -1,3 +1,10 @@
+import type { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Settings - Budget App',
+  description: 'Manage your settings with Budget App',
+}
+
 const SettingsPage = () => {
   return (
     <div>

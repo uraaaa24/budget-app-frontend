@@ -1,4 +1,4 @@
-import { Home, PiggyBank, Settings } from 'lucide-react'
+import { PiggyBank, Settings } from 'lucide-react'
 import type { Locale } from './locale'
 
 export const PAGES = {
@@ -14,13 +14,8 @@ export type PageKey = keyof typeof PAGES
  */
 export const MENU_ITEMS = [
   {
-    titleKey: 'dashboard',
+    titleKey: 'home',
     url: PAGES.HOME,
-    icon: Home,
-  },
-  {
-    titleKey: 'transactions',
-    url: PAGES.TRANSACTIONS,
     icon: PiggyBank,
   },
   {
