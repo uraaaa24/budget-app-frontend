@@ -20,7 +20,12 @@
   },
   "HomePage": {
     "title": "Hello world!",
-    "description": "This is a simple Next.js application."
+    "description": "This is a simple Next.js application.",
+    "DashboardSummary": {
+      "income": "Total Income",
+      "expense": "Total Expense",
+      "net": "Net Balance"
+    }
   },
   "TransactionsPage": {
     "title": "Transactions",

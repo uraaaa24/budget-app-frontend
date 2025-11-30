@@ -21,7 +21,7 @@ const Header = () => {
   const pageTitle = titleKey ? t(titleKey) : 'Budget App'
 
   return (
-    <header className="flex h-24 items-center px-16">
+    <header className="flex h-24 items-center mb-4">
       <h1 className="font-heading flex-1 text-3xl font-bold text-gray-900">
         {pageTitle}
       </h1>

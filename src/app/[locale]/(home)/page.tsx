@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import DashboardSummaryPanel from '@/features/dashboard/components/dashboard-panel'
 import TransactionForm from '@/features/transactions/components/transaction-form'
 import TransactionTable from '@/features/transactions/components/transaction-table'
 
@@ -7,9 +8,11 @@ export const metadata: Metadata = {
   description: 'Manage your transactions effectively with Budget App',
 }
 
-const TransactionsPage = async () => {
+const TransactionsPage = () => {
   return (
     <>
+      <DashboardSummaryPanel />
+
       <div className="flex items-center justify-end">
         <TransactionForm />
       </div>

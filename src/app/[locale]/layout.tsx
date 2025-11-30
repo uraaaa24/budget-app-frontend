@@ -32,9 +32,11 @@ export default async function LocaleLayout({
               <AppSidebar />
               <SidebarInset>
                 <div className="bg-white min-h-screen">
-                  <Header />
-                  <main className="flex-1 overflow-y-auto px-16 container py-8">
-                    {children}
+                  <main className="flex-1 overflow-y-auto px-4">
+                    <div className="max-w-5xl mx-auto w-full">
+                      <Header />
+                      {children}
+                    </div>
                   </main>
                 </div>
               </SidebarInset>
