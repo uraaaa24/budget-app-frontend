@@ -1,9 +1,4 @@
-import {
-  ArrowDown,
-  ArrowDownCircle,
-  ArrowUp,
-  ArrowUpCircle,
-} from 'lucide-react'
+import { ArrowDown, ArrowUp } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useFormContext } from 'react-hook-form'
 import FormFieldItem from '@/components/parts/forms/field-item'
