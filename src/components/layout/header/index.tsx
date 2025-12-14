@@ -6,42 +6,55 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
+import { Leaf } from 'lucide-react'
+import Link from 'next/link'
 import { usePathname } from 'next/navigation'
-import { useLocale, useTranslations } from 'next-intl'
-import type { Locale } from '@/constants/locale'
+import { useTranslations } from 'next-intl'
 import { MENU_ITEMS } from '@/constants/page'
+import { cn } from '@/lib/utils'
 
 const Header = () => {
   const pathname = usePathname()
-  const locale = useLocale() as Locale
   const t = useTranslations('Navigation')
 
-  const basePath = pathname.replace(`/${locale}`, '') || '/'
-  const titleKey = MENU_ITEMS.find((item) => item.url === basePath)?.titleKey
-  const pageTitle = titleKey ? t(titleKey) : 'Budget App'
-
   return (
-    <header className="flex h-24 items-center mb-4">
-      <h1 className="font-heading flex-1 text-3xl font-bold text-gray-900">
-        {pageTitle}
-      </h1>
+    <header className="flex h-20 items-center p-2 mt-6 mb-10 rounded-full gap-4 justify-between">
+      <div className="flex items-center gap-10">
+        <Link href="/" className="flex items-center gap-2">
+          <Leaf fill="#16a34a" className="!size-8 text-white" />
+          <span className="text-2xl font-bold text-gray-800">Kirokuba</span>
+        </Link>
 
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
-
-      <SignedIn>
-        <UserButton
-          showName
-          appearance={{
-            elements: {
-              userButtonBox: 'flex flex-col items-center gap-2',
-              userButtonAvatarBox: 'w-14 h-14',
-              userButtonOuterIdentifier: 'order-2 text-sm',
-            },
-          }}
-        />
-      </SignedIn>
+        <div className="flex items-center gap-4">
+          {MENU_ITEMS.map((item) => {
+            const isActive =
+              pathname === item.url || pathname.startsWith(`${item.url}/`)
+            return (
+              <Link
+                key={item.titleKey}
+                href={item.url}
+                className={cn(
+                  'inline-flex items-center font-semibold',
+                  isActive
+                    ? 'text-green-600'
+                    : 'text-gray-500 hover:text-green-600/70 transition-colors',
+                )}
+              >
+                <item.icon className="inline size-5 mr-2" />
+                {t(item.titleKey)}
+              </Link>
+            )
+          })}
+        </div>
+      </div>
+      <div className="flex items-center justify-end">
+        <SignedOut>
+          <RedirectToSignIn />
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
+      </div>
     </header>
   )
 }

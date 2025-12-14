@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const TransactionsPage = () => {
   return (
     <>
-      <DashboardSummaryPanel />
+      {/* <DashboardSummaryPanel /> */}
 
       <div className="flex items-center justify-end">
         <TransactionForm />

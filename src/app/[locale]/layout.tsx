@@ -3,7 +3,6 @@ import { Noto_Sans_JP } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import Header from '@/components/layout/header'
-import AppSidebar from '@/components/layout/sidebar'
 import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
 import { routing } from '@/i18n/routing'
 
@@ -29,7 +28,6 @@ export default async function LocaleLayout({
         <body className={`${notoSans.className} antialiased`}>
           <NextIntlClientProvider>
             <SidebarProvider>
-              <AppSidebar />
               <SidebarInset>
                 <div className="bg-white min-h-screen">
                   <main className="flex-1 overflow-y-auto px-4">
