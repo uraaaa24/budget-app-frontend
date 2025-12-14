@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import DashboardSummaryPanel from '@/features/dashboard/components/dashboard-panel'
+import PeriodSummary from '@/features/transactions/components/period-summary'
 import TransactionForm from '@/features/transactions/components/transaction-form'
 import TransactionTable from '@/features/transactions/components/transaction-table'
 
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 const TransactionsPage = () => {
   return (
     <>
-      {/* <DashboardSummaryPanel /> */}
+      <PeriodSummary />
 
       <div className="flex items-center justify-end">
         <TransactionForm />
