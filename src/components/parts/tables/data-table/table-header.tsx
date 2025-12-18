@@ -2,6 +2,7 @@ import { flexRender, type HeaderGroup } from '@tanstack/react-table'
 import { ArrowDown, ArrowUp, ArrowUpDown } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { TableHead, TableHeader, TableRow } from '@/components/ui/table'
+import { cn } from '@/lib/utils'
 
 type DataTableHeaderProps<TData> = {
   headerGroups: HeaderGroup<TData>[]
@@ -37,7 +38,10 @@ const DataTableHeader = <TData,>({
                   <Button
                     type="button"
                     variant="ghost"
-                    className="text-gray-700 hover:text-gray-900 hover:bg-transparent cursor-pointer"
+                    className={cn(
+                      'justify-start -ml-2 px-2 text-gray-700 hover:bg-transparent',
+                      sorted && 'text-emerald-600 hover:text-emerald-600',
+                    )}
                     onClick={() => {
                       if (sorted === 'desc') {
                         header.column.clearSorting()

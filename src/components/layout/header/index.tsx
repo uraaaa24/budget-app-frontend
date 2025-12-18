@@ -18,7 +18,7 @@ const Header = () => {
   const t = useTranslations('Navigation')
 
   return (
-    <header className="flex h-20 items-center p-2 mt-6 mb-10 rounded-full gap-4 justify-between">
+    <header className="mx-auto flex h-20 items-center rounded-full gap-4 justify-between">
       <div className="flex items-center gap-10">
         <Link href="/" className="flex items-center gap-2">
           <Leaf fill="#16a34a" className="!size-8 text-white" />

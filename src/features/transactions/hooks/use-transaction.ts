@@ -14,12 +14,12 @@ import type {
   PutTransactionResponse,
 } from '../types/api'
 
-export const useGetTransactions = () => {
+export const useGetTransactions = (from?: string, to?: string) => {
   const { authFetcher } = useFetcher()
 
   const { data, error, isLoading, isValidating, mutate } =
     useSWR<GetTransactionsResponse>(
-      `${env.API_URL}/transactions`,
+      `${env.API_URL}/transactions?from=${from}&to=${to}`,
       authFetcher,
       { revalidateOnFocus: false, revalidateIfStale: false },
     )

@@ -1,5 +1,5 @@
 import { flexRender, type Row } from '@tanstack/react-table'
-import { AlertCircle, Database } from 'lucide-react'
+import { AlertCircle } from 'lucide-react'
 import { TableBody, TableCell, TableRow } from '@/components/ui/table'
 
 type DataTableBodyProps<TData> = {
@@ -79,13 +79,8 @@ const DataTableBody = <TData,>({
         <TableRow>
           <TableCell colSpan={columnCount} className="h-24">
             <div className="flex flex-col items-center justify-center space-y-3">
-              <Database className="h-12 w-12 text-muted-foreground/50" />
               <div className="text-lg font-medium text-muted-foreground">
                 No data found
-              </div>
-              <div className="text-sm text-muted-foreground">
-                Try adjusting your search or filter to find what you&apos;re
-                looking
               </div>
             </div>
           </TableCell>

@@ -16,7 +16,7 @@ const Operator = ({ type }: OperatorProps) => {
       aria-hidden="true"
     >
       <div />
-      <div className="text-3xl font-semibold text-gray-300 select-none">
+      <div className="text-3xl font-semibold text-gray-400 select-none">
         {type}
       </div>
     </div>

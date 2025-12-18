@@ -40,13 +40,13 @@ const PeriodSummaryItem = ({ amount, type }: PeriodCardProps) => {
 
   return (
     <div className="flex h-32 flex-col items-center justify-between py-6">
-      <div className="text-sm font-medium text-gray-5 00">{t(type)}</div>
+      <div className="text-sm font-semibold">{t(type)}</div>
 
       <div
         className={cn(
           'text-3xl font-semibold tracking-tight',
           getAmountColorClass(type),
-          isZero && 'text-gray-400',
+          isZero && 'text-gray-500',
         )}
       >
         {formatAmount(amount)}

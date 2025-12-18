@@ -3,7 +3,8 @@ import { Noto_Sans_JP } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import Header from '@/components/layout/header'
-import { SidebarInset, SidebarProvider } from '@/components/ui/sidebar'
+import TransactionPeriodSelect from '@/components/layout/month-select'
+import { PeriodProvider } from '@/contexts/period-context'
 import { routing } from '@/i18n/routing'
 
 const notoSans = Noto_Sans_JP({
@@ -27,21 +28,31 @@ export default async function LocaleLayout({
       <html lang={locale}>
         <body className={`${notoSans.className} antialiased`}>
           <NextIntlClientProvider>
-            <SidebarProvider>
-              <SidebarInset>
-                <div className="bg-white min-h-screen">
-                  <main className="flex-1 overflow-y-auto px-4">
-                    <div className="max-w-5xl mx-auto w-full">
-                      <Header />
-                      {children}
-                    </div>
-                  </main>
-                </div>
-              </SidebarInset>
-            </SidebarProvider>
+            <PeriodProvider>
+              <InternalLocaleLayout>{children}</InternalLocaleLayout>
+            </PeriodProvider>
           </NextIntlClientProvider>
         </body>
       </html>
     </ClerkProvider>
+  )
+}
+
+const InternalLocaleLayout = ({ children }: { children: React.ReactNode }) => {
+  return (
+    <main className="flex-1 overflow-y-auto bg-white min-h-screen">
+      <div className="mx-auto w-full min-h-screen flex flex-col">
+        <div className="max-w-5xl w-full mx-auto mt-2 mb-6 p-4">
+          <Header />
+          <div className="w-sm mx-auto">
+            <TransactionPeriodSelect />
+          </div>
+        </div>
+
+        <div className="bg-gray-50 flex-1 py-8">
+          <div className="max-w-5xl mx-auto">{children}</div>
+        </div>
+      </div>
+    </main>
   )
 }

@@ -2,6 +2,7 @@
 
 import type { ColumnDef } from '@tanstack/react-table'
 import DataTable from '@/components/parts/tables/data-table'
+import { usePeriod } from '@/contexts/period-context'
 import { useGetTransactions } from '../../hooks/use-transaction'
 import type { Transaction } from '../../types/transaction'
 import TransactionActionCell from './action-cell'
@@ -42,11 +43,11 @@ const columns: ColumnDef<TransactionTableRow>[] = [
       return transaction.category?.name
     },
   },
-  {
-    accessorKey: 'account',
-    header: 'Account',
-    enableSorting: true,
-  },
+  // {
+  //   accessorKey: 'account',
+  //   header: 'Account',
+  //   enableSorting: true,
+  // },
   {
     accessorKey: 'description',
     header: 'Description',
@@ -61,7 +62,9 @@ const columns: ColumnDef<TransactionTableRow>[] = [
 ]
 
 const TransactionTable = () => {
-  const { data, isLoading, isValidating, error } = useGetTransactions()
+  const { from, to } = usePeriod()
+
+  const { data, isLoading, isValidating, error } = useGetTransactions(from, to)
 
   const tableData: TransactionTableRow[] =
     data?.transactions.map((tx) => ({
