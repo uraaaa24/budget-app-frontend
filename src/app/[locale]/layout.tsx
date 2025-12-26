@@ -49,7 +49,7 @@ const InternalLocaleLayout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
 
-        <div className="bg-gray-50 flex-1 py-8">
+        <div className="bg-gray-50 flex-1 py-6 px-4">
           <div className="max-w-5xl mx-auto">{children}</div>
         </div>
       </div>

@@ -6,10 +6,19 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
-import { Leaf } from 'lucide-react'
+import { Leaf, Menu } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
+import { Button } from '@/components/ui/button'
+import {
+  Sheet,
+  SheetClose,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from '@/components/ui/sheet'
 import { MENU_ITEMS } from '@/constants/page'
 import { cn } from '@/lib/utils'
 
@@ -25,7 +34,7 @@ const Header = () => {
           <span className="text-2xl font-bold text-gray-800">Kirokuba</span>
         </Link>
 
-        <div className="flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-4">
           {MENU_ITEMS.map((item) => {
             const isActive =
               pathname === item.url || pathname.startsWith(`${item.url}/`)
