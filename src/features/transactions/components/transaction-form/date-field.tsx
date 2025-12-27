@@ -10,7 +10,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
-import { formatForDisplay, parseYmdToDate } from '@/lib/date'
+import { formatDateToYmd, formatForDisplay, parseYmdToDate } from '@/lib/date'
 import { cn } from '@/lib/utils'
 import {
   type TransactionFormInferType,
@@ -54,13 +54,7 @@ const TransactionDateField = () => {
                 selected={selectedDate}
                 onSelect={(date) => {
                   if (!date) return
-                  // ★ ここは「フォームが Date 前提か string 前提か」によって変える
-
-                  // 1) 今は z.date() / Date 型で運用しているなら：
-                  field.onChange(date)
-
-                  // 2) フォームを "YYYY-MM-DD" の string に寄せたいなら：
-                  // field.onChange(formatDateToYmd(date))
+                  field.onChange(formatDateToYmd(date))
                 }}
                 disabled={(date) =>
                   date > new Date() || date < new Date('1900-01-01')

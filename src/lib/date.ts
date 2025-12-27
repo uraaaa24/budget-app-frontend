@@ -1,3 +1,7 @@
+import type { Locale } from 'next-intl'
+
+const DAY_MS = 24 * 60 * 60 * 1000
+
 /**
  * Parse a date value in "YYYY-MM-DD" format or Date object into a Date object.
  *
@@ -9,36 +13,41 @@ export const parseYmdToDate = (
 ): Date | undefined => {
   if (!value) return undefined
 
-  if (value instanceof Date) {
-    return new Date(value.getFullYear(), value.getMonth(), value.getDate())
-  }
-
   if (typeof value === 'string') {
+    // strict check for "YYYY-MM-DD"
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return undefined
+
     const [y, m, d] = value.split('-').map(Number)
-    if (!y || !m || !d) return undefined
-    return new Date(y, m - 1, d)
+    if (!Number.isInteger(y) || !Number.isInteger(m) || !Number.isInteger(d)) {
+      return undefined
+    }
+
+    const date = new Date(y, m - 1, d)
+
+    // Invalid date check and cross-check components(eg. 2023-02-30 -> 2023-03-02)
+    if (
+      date.getFullYear() !== y ||
+      date.getMonth() + 1 !== m ||
+      date.getDate() !== d
+    ) {
+      return undefined
+    }
+
+    return date
   }
 
   return undefined
 }
 
 /**
- * Format a date value (string in "YYYY-MM-DD" format or Date object) for display in "ja-JP" locale.
- *
- * @param value
- * @returns
+ * Local start of day
  */
-export const formatForDisplay = (
-  value: string | Date | null | undefined,
-): string => {
-  if (!value) return ''
+export const startOfDay = (date: Date): Date => {
+  return new Date(date.getFullYear(), date.getMonth(), date.getDate())
+}
 
-  const date =
-    value instanceof Date ? value : (parseYmdToDate(value) ?? undefined)
-
-  if (!date) return ''
-
-  return date.toLocaleDateString('ja-JP')
+export const startOfDayMs = (date: Date): number => {
+  return startOfDay(date).getTime()
 }
 
 /**
@@ -55,24 +64,77 @@ export const formatDateToYmd = (date: Date): string => {
 }
 
 /**
- * Format a Date into YYYY-MM-DD (local time, no timezone shift).
+ * Format a date value (string in "YYYY-MM-DD" format or Date object) for display in "ja-JP" locale.
  *
- * @param date - The Date to format.
- * @returns The formatted date string in YYYY-MM-DD format.
+ * @param value
+ * @returns
  */
-const formatDate = (date: Date): string => {
-  const year = date.getFullYear()
-  const month = String(date.getMonth() + 1).padStart(2, '0')
-  const day = String(date.getDate()).padStart(2, '0')
-  return `${year}-${month}-${day}`
+export const formatForDisplay = (
+  value: string | Date | null | undefined,
+  locale?: Locale,
+  optons?: Intl.DateTimeFormatOptions,
+): string => {
+  const date = value instanceof Date ? value : parseYmdToDate(value)
+  if (!date) return ''
+
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    ...optons,
+  }).format(date)
 }
 
 /**
  * Get the period for the current month in YYYY-MM-DD format.
  */
-export const getThisMonthPeriod = (): { from: string; to: string } => {
-  const today = new Date()
-  const from = formatDate(new Date(today.getFullYear(), today.getMonth(), 1))
-  const to = formatDate(today)
+export const getThisMonthPeriod = (
+  now: Date = new Date(),
+): { from: string; to: string } => {
+  const from = formatDateToYmd(new Date(now.getFullYear(), now.getMonth(), 1))
+  const to = formatDateToYmd(now)
   return { from, to }
+}
+
+/**
+ * Format a Date into YYYY-MM-DD (local time, no timezone shift).
+ */
+export const dateFormatter = (
+  date: Date,
+  locale?: Locale,
+  options?: Intl.DateTimeFormatOptions,
+) => {
+  return new Intl.DateTimeFormat(locale, {
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    ...options,
+  }).format(date)
+}
+
+export const diffDaysFromToday = (
+  target: Date,
+  now: Date = new Date(),
+): number => {
+  const targetMs = startOfDayMs(target)
+  const todayMs = startOfDayMs(now)
+  return Math.floor((todayMs - targetMs) / DAY_MS)
+}
+
+export const formatRelativeDayLabel = (
+  value: string | Date,
+  locale: Locale = 'ja',
+): string => {
+  const date = value instanceof Date ? startOfDay(value) : parseYmdToDate(value)
+  if (!date) return ''
+
+  const diff = diffDaysFromToday(date)
+
+  if (diff === 0) return 'Today'
+  if (diff === 1) return 'Yesterday'
+
+  return new Intl.DateTimeFormat(locale, {
+    month: 'numeric',
+    day: 'numeric',
+  }).format(date)
 }

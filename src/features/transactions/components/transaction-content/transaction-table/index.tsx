@@ -2,9 +2,8 @@
 
 import type { ColumnDef } from '@tanstack/react-table'
 import DataTable from '@/components/parts/tables/data-table'
-import { usePeriod } from '@/contexts/period-context'
-import { useGetTransactions } from '../../hooks/use-transaction'
-import type { Transaction } from '../../types/transaction'
+import type { GetTransactionsResponse } from '@/features/transactions/types/api'
+import type { Transaction } from '../../../types/transaction'
 import TransactionActionCell from './action-cell'
 import TransactionTableAmountCell from './amount-cell'
 
@@ -61,13 +60,21 @@ const columns: ColumnDef<TransactionTableRow>[] = [
   },
 ]
 
-const TransactionTable = () => {
-  const { from, to } = usePeriod()
+type TransactionTableProps = {
+  transactions: GetTransactionsResponse['transactions']
+  isLoading: boolean
+  isValidating: boolean
+  error?: Error
+}
 
-  const { data, isLoading, isValidating, error } = useGetTransactions(from, to)
-
+const TransactionTable = ({
+  transactions,
+  isLoading,
+  isValidating,
+  error,
+}: TransactionTableProps) => {
   const tableData: TransactionTableRow[] =
-    data?.transactions.map((tx) => ({
+    transactions?.map((tx) => ({
       id: tx.id.toString(),
       type: tx.type,
       amount: tx.amount,
@@ -77,14 +84,12 @@ const TransactionTable = () => {
     })) ?? []
 
   return (
-    <div className="container mx-auto py-6">
-      <DataTable
-        columns={columns}
-        data={tableData}
-        isLoading={isLoading || isValidating}
-        error={error}
-      />
-    </div>
+    <DataTable
+      columns={columns}
+      data={tableData}
+      isLoading={isLoading || isValidating}
+      error={error}
+    />
   )
 }
 

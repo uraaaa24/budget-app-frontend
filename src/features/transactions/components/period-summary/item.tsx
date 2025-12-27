@@ -1,4 +1,5 @@
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
+import { formatAmount } from '@/lib/currency'
 import { cn } from '@/lib/utils'
 
 export const PeriodTypes = {
@@ -25,16 +26,9 @@ const getAmountColorClass = (type: PeriodType) => {
   }
 }
 
-const formatAmount = (amount: number) => {
-  return new Intl.NumberFormat('ja-JP', {
-    style: 'currency',
-    currency: 'JPY',
-    maximumFractionDigits: 0,
-  }).format(amount)
-}
-
 const PeriodSummaryItem = ({ amount, type }: PeriodCardProps) => {
   const t = useTranslations('HomePage.DashboardSummary')
+  const locale = useLocale()
 
   const isZero = amount === 0
 
@@ -49,7 +43,7 @@ const PeriodSummaryItem = ({ amount, type }: PeriodCardProps) => {
           isZero && 'text-gray-500',
         )}
       >
-        {formatAmount(amount)}
+        {formatAmount(amount, locale)}
       </div>
     </div>
   )

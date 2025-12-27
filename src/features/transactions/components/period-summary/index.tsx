@@ -1,9 +1,6 @@
 'use client'
 
-import { useLocale } from 'next-intl'
-import MonthSelect from '@/components/parts/forms/month-select'
 import { usePeriod } from '@/contexts/period-context'
-import { formatDateToYmd } from '@/lib/date'
 import { useGetDashboardSummary } from '../../../dashboard/hooks/use-dashboard-summary'
 import PeriodSummaryItem, { PeriodTypes } from './item'
 import Operator, { OperatorTypes } from './operator'

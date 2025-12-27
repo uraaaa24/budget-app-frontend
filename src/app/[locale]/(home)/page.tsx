@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import PeriodSummary from '@/features/transactions/components/period-summary'
+import TransactionContent from '@/features/transactions/components/transaction-content'
 import TransactionForm from '@/features/transactions/components/transaction-form'
-import TransactionTable from '@/features/transactions/components/transaction-table'
 
 export const metadata: Metadata = {
   title: 'Transactions - Budget App',
@@ -16,7 +16,7 @@ const TransactionsPage = () => {
       <div className="flex items-center justify-end">
         <TransactionForm />
       </div>
-      <TransactionTable />
+      <TransactionContent />
     </>
   )
 }

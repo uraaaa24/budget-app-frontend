@@ -8,13 +8,14 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from '@/components/ui/popover'
+import type { Transaction } from '@/features/transactions/types/transaction'
 import {
   useDeleteTransaction,
   useGetTransactions,
   usePutTransaction,
-} from '../../hooks/use-transaction'
-import { useTransactionForm } from '../../hooks/use-transaction-form'
-import TransactionFormDrawer from '../transaction-form-drawer'
+} from '../../../hooks/use-transaction'
+import { useTransactionForm } from '../../../hooks/use-transaction-form'
+import TransactionFormDrawer from '../../transaction-form-drawer'
 import type { TransactionTableRow } from '.'
 
 type TransactionDeleteActionProps = {
@@ -116,7 +117,7 @@ const TransactionEditAction = ({ transaction }: TransactionEditActionProps) => {
 }
 
 type TransactionActionCellProps = {
-  transaction: TransactionTableRow
+  transaction: Transaction
 }
 
 const TransactionActionCell = ({ transaction }: TransactionActionCellProps) => {

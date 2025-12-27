@@ -29,6 +29,16 @@
   },
   "TransactionsPage": {
     "title": "Transactions",
+    "List": {
+      "loadError": "Failed to load data",
+      "empty": "No data found",
+      "noDescription": "No description",
+      "RelativeDate": {
+        "today": "Today",
+        "yesterday": "Yesterday",
+        "daysAgo": "{count, plural, one {# day ago} other {# days ago}}"
+      }
+    },
     "Form": {
       "Create": {
         "button": "Add new",

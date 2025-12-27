@@ -1,6 +1,6 @@
 import { Badge } from '@/components/ui/badge'
 import { cn } from '@/lib/utils'
-import type { TransactionType } from '../../types/transaction'
+import type { TransactionType } from '../../../types/transaction'
 
 type TransactionTableAmountCellProps = {
   transactionType: TransactionType

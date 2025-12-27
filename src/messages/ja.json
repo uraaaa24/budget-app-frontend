@@ -1,0 +1,68 @@
+{
+  "Utils": {
+    "Actions": {
+      "cancel": "キャンセル",
+      "delete": "削除",
+      "edit": "編集",
+      "save": "保存",
+      "update": "更新",
+      "close": "閉じる",
+      "confirm": "確認",
+      "loading": "読み込み中"
+    },
+    "Messages": {
+      "deleteConfirm": "本当に削除しますか？"
+    }
+  },
+  "Navigation": {
+    "home": "ホーム",
+    "settings": "設定"
+  },
+  "HomePage": {
+    "title": "こんにちは！",
+    "description": "シンプルなNext.jsアプリケーションです。",
+    "DashboardSummary": {
+      "income": "収入合計",
+      "expense": "支出合計",
+      "net": "収支"
+    }
+  },
+  "TransactionsPage": {
+    "title": "取引",
+    "List": {
+      "loadError": "データの取得に失敗しました",
+      "empty": "データがありません",
+      "noDescription": "説明なし",
+      "RelativeDate": {
+        "today": "今日",
+        "yesterday": "昨日",
+        "daysAgo": "{count}日前"
+      }
+    },
+    "Form": {
+      "Create": {
+        "button": "追加",
+        "title": "取引を追加",
+        "description": "取引の内容を入力してください。"
+      },
+      "Edit": {
+        "title": "取引を編集",
+        "description": "取引内容を更新してください。"
+      },
+      "Fields": {
+        "Type": {
+          "label": "種別",
+          "expense": "支出",
+          "income": "収入"
+        },
+        "date": "日付",
+        "selectDate": "日付を選択",
+        "description": "説明",
+        "account": "口座",
+        "category": "カテゴリ",
+        "amount": "金額",
+        "note": "メモ"
+      }
+    }
+  }
+}
