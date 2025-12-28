@@ -37,9 +37,15 @@ const TransactionForm = () => {
 
   const transactionFormProps = {
     trigger: (
-      <Button variant="default" className="cursor-pointer">
-        <Plus />
-        {t('button')}
+      <Button
+        variant="default"
+        size="icon"
+        aria-label={t('button')}
+        title={t('button')}
+        className="rounded-full size-14 sm:rounded-md sm:h-9 sm:w-auto sm:px-4 sm:py-2"
+      >
+        <Plus className="size-6 sm:size-4" />
+        <span className="hidden sm:inline">{t('button')}</span>
       </Button>
     ),
     form,
