@@ -46,7 +46,7 @@ const InternalLocaleLayout = ({ children }: { children: React.ReactNode }) => {
         <div className="mx-auto w-full min-h-screen flex flex-col">
           <div className="max-w-5xl w-full mx-auto mb-4 p-4">
             <Header />
-            <div className="w-sm mt-4 mx-auto">
+            <div className="sm:w-md mt-4 mx-auto">
               <TransactionPeriodSelect />
             </div>
           </div>

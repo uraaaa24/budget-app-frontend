@@ -6,19 +6,10 @@ import {
   SignedOut,
   UserButton,
 } from '@clerk/nextjs'
-import { Leaf, Menu } from 'lucide-react'
+import { Leaf } from 'lucide-react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTranslations } from 'next-intl'
-import { Button } from '@/components/ui/button'
-import {
-  Sheet,
-  SheetClose,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from '@/components/ui/sheet'
 import { MENU_ITEMS } from '@/constants/page'
 import { cn } from '@/lib/utils'
 
@@ -44,9 +35,7 @@ const Header = () => {
                 href={item.url}
                 className={cn(
                   'inline-flex items-center font-semibold',
-                  isActive
-                    ? 'text-green-600'
-                    : 'text-gray-500 hover:text-green-600/70 transition-colors',
+                  isActive ? 'text-green-600' : 'text-gray-500',
                 )}
               >
                 <item.icon className="inline size-5 mr-2" />

@@ -3,7 +3,6 @@ import type { Locale } from './locale'
 
 export const PAGES = {
   HOME: '/',
-  TRANSACTIONS: '/transactions',
   SETTINGS: '/settings',
 } as const
 
@@ -18,11 +17,11 @@ export const MENU_ITEMS = [
     url: PAGES.HOME,
     icon: PiggyBank,
   },
-  // {
-  //   titleKey: 'settings',
-  //   url: PAGES.SETTINGS,
-  //   icon: Settings,
-  // },
+  {
+    titleKey: 'settings',
+    url: PAGES.SETTINGS,
+    icon: Settings,
+  },
 ] as const
 export type MenuItem = (typeof MENU_ITEMS)[number]
 
