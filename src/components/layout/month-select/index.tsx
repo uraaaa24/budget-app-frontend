@@ -16,6 +16,7 @@ const TransactionPeriodSelect = () => {
       value={monthValue}
       locale={locale}
       onChange={(ym) => {
+        if (!ym) return
         const [year, month] = ym.split('-').map(Number)
         const newFrom = new Date(year, month - 1, 1)
         const newTo = new Date(year, month, 0)

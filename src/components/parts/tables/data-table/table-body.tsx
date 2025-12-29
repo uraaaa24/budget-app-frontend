@@ -20,7 +20,7 @@ const DataTableBody = <TData,>({
   if (isLoading) {
     return (
       <TableBody>
-        {Array.from({ length: 10 }, () => {
+        {Array.from({ length: 5 }, () => {
           const rowId = crypto.randomUUID()
           return (
             <TableRow key={rowId}>
