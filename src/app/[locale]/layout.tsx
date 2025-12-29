@@ -3,6 +3,7 @@ import { Noto_Sans_JP } from 'next/font/google'
 import { notFound } from 'next/navigation'
 import { hasLocale, NextIntlClientProvider } from 'next-intl'
 import Header from '@/components/layout/header'
+import MobileBottomNav from '@/components/layout/mobile-bottom-nav'
 import TransactionPeriodSelect from '@/components/layout/month-select'
 import { PeriodProvider } from '@/contexts/period-context'
 import { routing } from '@/i18n/routing'
@@ -40,19 +41,23 @@ export default async function LocaleLayout({
 
 const InternalLocaleLayout = ({ children }: { children: React.ReactNode }) => {
   return (
-    <main className="flex-1 overflow-y-auto bg-white min-h-screen">
-      <div className="mx-auto w-full min-h-screen flex flex-col">
-        <div className="max-w-5xl w-full mx-auto mb-4 p-4">
-          <Header />
-          <div className="w-sm mt-4 mx-auto">
-            <TransactionPeriodSelect />
+    <>
+      <main className="flex-1 overflow-y-auto bg-white min-h-screen">
+        <div className="mx-auto w-full min-h-screen flex flex-col">
+          <div className="max-w-5xl w-full mx-auto mb-4 p-4">
+            <Header />
+            <div className="w-sm mt-4 mx-auto">
+              <TransactionPeriodSelect />
+            </div>
+          </div>
+
+          <div className="bg-gray-50 flex-1 pt-6 pb-24 px-4 sm:pb-6">
+            <div className="max-w-5xl mx-auto">{children}</div>
           </div>
         </div>
+      </main>
 
-        <div className="bg-gray-50 flex-1 py-6 px-4">
-          <div className="max-w-5xl mx-auto">{children}</div>
-        </div>
-      </div>
-    </main>
+      <MobileBottomNav />
+    </>
   )
 }

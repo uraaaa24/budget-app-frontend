@@ -13,7 +13,7 @@ const TransactionsPage = () => {
     <>
       <PeriodSummary />
 
-      <div className="fixed bottom-4 right-4 z-50 sm:static sm:flex sm:items-center sm:justify-end">
+      <div className="fixed bottom-20 right-4 z-50 sm:static sm:flex sm:items-center sm:justify-end">
         <TransactionForm />
       </div>
       <TransactionContent />
